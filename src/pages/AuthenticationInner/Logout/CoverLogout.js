@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, Col, Container, Row } from 'reactstrap';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Card, Col, Container, Row } from 'reactstrap'
 
-import AuthSlider from '../authCarousel';
+import AuthSlider from '../authCarousel'
 
 const CoverLogout = () => {
-    document.title = "Log Out ---  | Velzon - React Admin & Dashboard Template";
+    document.title = 'Log Out ---  | Velzon - React Admin & Dashboard Template'
     return (
         <React.Fragment>
             <div className="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">
@@ -23,15 +23,19 @@ const CoverLogout = () => {
                                                 <lord-icon
                                                     src="https://cdn.lordicon.com/hzomhqxz.json"
                                                     trigger="loop"
-                                                    colors="primary:#8c68cd,secondary:#4788ff"
-                                                    style={{ width: "180px", height: "180px" }}>
-                                                </lord-icon>
+                                                    colors="primary:#644BC5,secondary:#4788ff"
+                                                    style={{ width: '180px', height: '180px' }}
+                                                ></lord-icon>
 
                                                 <div className="mt-4 pt-2">
                                                     <h5>You are Logged Out</h5>
-                                                    <p className="text-muted">Thank you for using <span className="fw-semibold">velzon</span> admin template</p>
+                                                    <p className="text-muted">
+                                                        Thank you for using <span className="fw-semibold">velzon</span> admin template
+                                                    </p>
                                                     <div className="mt-4">
-                                                        <Link to="/auth-signin-basic" className="btn btn-primary w-100">Sign In</Link>
+                                                        <Link to="/auth-signin-basic" className="btn btn-primary w-100">
+                                                            Sign In
+                                                        </Link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -48,7 +52,10 @@ const CoverLogout = () => {
                         <Row>
                             <Col lg={12}>
                                 <div className="text-center">
-                                    <p className="mb-0">&copy; {new Date().getFullYear()} Velzon. Crafted with <i className="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                    <p className="mb-0">
+                                        &copy; {new Date().getFullYear()} Velzon. Crafted with <i className="mdi mdi-heart text-danger"></i> by
+                                        Themesbrand
+                                    </p>
                                 </div>
                             </Col>
                         </Row>
@@ -58,7 +65,7 @@ const CoverLogout = () => {
                 {/* <!-- end Footer --> */}
             </div>
         </React.Fragment>
-    );
-};
+    )
+}
 
-export default CoverLogout;
+export default CoverLogout

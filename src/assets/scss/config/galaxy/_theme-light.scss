@@ -11,7 +11,7 @@
   --#{$prefix}vertical-menu-sub-item-hover-color:    #{$primary};
   --#{$prefix}vertical-menu-sub-item-active-color:   #{$primary};
   --#{$prefix}vertical-menu-title-color:             #919da9;
-  
+
   //vertical dark
   --#{$prefix}vertical-menu-bg-dark:                 rgb(72, 38, 104);
   --#{$prefix}vertical-menu-item-color-dark:         #e2c4ff;
@@ -54,12 +54,12 @@
   --#{$prefix}twocolumn-menu-item-active-color-dark:  #{$white};
   --#{$prefix}twocolumn-menu-item-active-bg-dark:  #{rgba($white, .15)};
 
-  // boxed 
+  // boxed
   --#{$prefix}boxed-body-bg: #{darken($body-bg, 4%)};
 
   // heading-color
   --#{$prefix}heading-color: #{$gray-700};
-  
+
   // component variable
   // link
   --#{$prefix}link-color: #{$primary};
@@ -78,7 +78,7 @@
     --#{$prefix}nav-tabs-link-active-bg:           #{$body-bg};
   }
 
-  //choices 
+  //choices
   .choices, .flatpickr-calendar, .ck, .ql-toolbar, .select2-container, .menu-dropdown {
     --#{$prefix}choices-bg:                        #{$white};
     --#{$prefix}choices-link-color:                #{$gray-900};
@@ -100,7 +100,7 @@
 
   //check
   --#{$prefix}input-check-border: var(--#{$prefix}input-border);
-  
+
 
   --#{$prefix}card-bg-fill:                       var(--#{$prefix}white);
 }

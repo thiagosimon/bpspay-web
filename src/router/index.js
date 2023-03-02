@@ -19,7 +19,7 @@ const Index = () => {
                     ))}
                 </Route>
 
-                <Route>
+                {/* <Route>
                     {authProtectedRoutes.map((route, idx) => (
                         <Route
                             path={route.path}
@@ -32,7 +32,7 @@ const Index = () => {
                             exact={true}
                         />
                     ))}
-                </Route>
+                </Route> */}
             </Routes>
         </React.Fragment>
     )

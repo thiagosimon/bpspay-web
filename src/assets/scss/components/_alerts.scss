@@ -76,7 +76,7 @@
 
 //alert additional example
 
-.alert-additional { 
+.alert-additional {
     padding: 0;
 
     .alert-body{
@@ -135,7 +135,7 @@
             border-top-color: $value;
         }
     }
-    
+
 
     // rounded label
 
@@ -168,7 +168,7 @@
                 color: $value;
             }
         }
-        
+
     }
 
     //alert additional example
@@ -179,7 +179,7 @@
                 color: set-color-from-background($value);
             }
         }
-    }   
+    }
 }
 .alert-dismissible {
     .btn-close {
@@ -197,4 +197,3 @@
 .alert-outline.alert-dark{
     color: var(--#{$prefix}dark);
 }
-   

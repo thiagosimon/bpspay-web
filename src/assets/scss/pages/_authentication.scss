@@ -24,21 +24,16 @@
     right: 0;
     width: 100%;
     height: 380px;
-    
+
     @media (max-width: 575.98px) {
         height: 280px;
     }
 }
 
 .auth-one-bg{
-    background-image: url("../../images/auth-one-bg.jpg");
+    background-image: url("../../images/auth-one-bg.png");
     background-position: center;
     background-size: cover;
-
-    .bg-overlay{
-        background: linear-gradient(to right, darken($primary, 6%), $primary);
-        opacity: 0.9;
-    }
 
     .shape{
         position: absolute;
@@ -99,11 +94,8 @@
     background: $auth-bg-cover;
 
     > .bg-overlay{
-        background-image: url("../../images/cover-pattern.png");
-        background-position: center;
-        background-size: cover;
         opacity: 1;
-        background-color: transparent;
+        // background-color: transparent;
     }
 
     .footer{
@@ -111,7 +103,7 @@
     }
 }
 
-//passowrd validations 
+//passowrd validations
 #password-contain {
     display: none;
 
@@ -138,4 +130,19 @@
             }
         }
     }
+}
+
+.login-bg-overlay{
+    $cor1: #644BC5;
+    $cor2: #342777;
+
+    background: radial-gradient(50% 50% at 50% 50%, $cor1 0%, $cor2 100%);
+}
+
+.carousel-bg-overlay{
+    $primary: #392B80;
+
+    background: linear-gradient(180deg,  $primary 23.44%, rgba(255, 255, 255, 0) 85%);
+    mix-blend-mode: multiply;
+    transform: rotate(-180deg);
 }

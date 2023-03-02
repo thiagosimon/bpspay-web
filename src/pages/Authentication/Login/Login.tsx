@@ -2,13 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Col, Container, Input, Label, Row, Button } from 'reactstrap'
 import AuthSlider from '../authCarousel'
+import { FOOTER_DESCRIPTION } from '../../../constants'
 
-const CoverSignIn = () => {
-    document.title = 'Cover SignIn | Velzon - React Admin & Dashboard Template'
+import { useTranslation } from 'react-i18next'
+
+const Login = () => {
+    const { t } = useTranslation()
     return (
         <React.Fragment>
-            <div className="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">
-                <div className="bg-overlay"></div>
+            <div className="auth-page-wrapper py-5 d-flex justify-content-center align-items-center min-vh-100">
+                <div className="bg-overlay login-bg-overlay"></div>
                 <div className="auth-page-content overflow-hidden pt-lg-5">
                     <Container>
                         <Row>
@@ -18,9 +21,9 @@ const CoverSignIn = () => {
                                         <AuthSlider />
 
                                         <Col lg={6}>
-                                            <div className="p-lg-5 p-4">
+                                            <div className="p-lg-5 p-4 mb-4">
                                                 <div>
-                                                    <h5 className="text-primary">Welcome Back !</h5>
+                                                    <h5 className="text-primary">{t('Welcome.Back')}</h5>
                                                     <p className="text-muted">Sign in to continue to Velzon.</p>
                                                 </div>
 
@@ -72,13 +75,13 @@ const CoverSignIn = () => {
                                                             </Button>
                                                         </div>
 
-                                                        <div className="mt-4 text-center">
+                                                        {/* <div className="mt-4 text-center">
                                                             <div className="signin-other-title">
                                                                 <h5 className="fs-13 mb-4 title">Sign In with</h5>
                                                             </div>
 
                                                             <div>
-                                                                <Button color="primary" className="btn-icon me-1">
+                                                                <Button color="primary" className="btn-icon me-1" onClick={() => {}}>
                                                                     <i className="ri-facebook-fill fs-16"></i>
                                                                 </Button>
                                                                 <Button color="danger" className="btn-icon me-1">
@@ -91,12 +94,12 @@ const CoverSignIn = () => {
                                                                     <i className="ri-twitter-fill fs-16"></i>
                                                                 </Button>
                                                             </div>
-                                                        </div>
+                                                        </div> */}
                                                     </form>
                                                 </div>
 
                                                 <div className="mt-5 text-center">
-                                                    <p className="mb-0">
+                                                    <p className="pt-5 mb-0">
                                                         Don't have an account ?{' '}
                                                         <a href="/auth-signup-cover" className="fw-semibold text-primary text-decoration-underline">
                                                             {' '}
@@ -119,8 +122,8 @@ const CoverSignIn = () => {
                             <Col lg={12}>
                                 <div className="text-center">
                                     <p className="mb-0">
-                                        &copy; {new Date().getFullYear()} Velzon. Crafted with <i className="mdi mdi-heart text-danger"></i> by
-                                        Themesbrand
+                                        &copy; {new Date().getFullYear()} {FOOTER_DESCRIPTION.BRAND_NAME}.{FOOTER_DESCRIPTION.DEVELOPMENT_BY}{' '}
+                                        <i className="mdi mdi-heart text-danger"></i> {FOOTER_DESCRIPTION.COMPANY_NAME}
                                     </p>
                                 </div>
                             </Col>
@@ -132,4 +135,4 @@ const CoverSignIn = () => {
     )
 }
 
-export default CoverSignIn
+export default Login

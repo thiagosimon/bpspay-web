@@ -5,7 +5,7 @@
 @import"./shepherd.css";
 @import "./mermaid.min.css";
 
-//RTL 
+//RTL
 // @import "../scss/rtl/components-rtl";
 // @import "../scss/rtl/layouts-rtl";
 // @import "../scss/rtl/plugins-rtl";
@@ -36,11 +36,11 @@ body {
 .noUi-connect,
 .noUi-horizontal {
   height: 2px !important;
-  background: #8c68cd !important;
+  background: #644BC5 !important;
 }
 
 .noUi-handle {
-  background: #8c68cd !important;
+  background: #644BC5 !important;
   border: 2px solid var(--vz-card-bg) !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
