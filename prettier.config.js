@@ -1,0 +1,16 @@
+module.exports = {
+    arrowParens: 'avoid',
+    bracketSpacing: true,
+    bracketSameLine: false,
+    jsxBracketSameLine: false,
+    insertPragma: false,
+    jsxSingleQuote: false,
+    endOfLine: 'lf',
+    printWidth: 150,
+    semi: false,
+    singleQuote: true,
+    tabWidth: 4,
+    trailingComma: 'none',
+    useTabs: false,
+    proseWrap: 'preserve',
+}

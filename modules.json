@@ -1,0 +1,15 @@
+{
+    "root": ".",
+    "base": "src",
+    "modules": [
+        "assets",
+        "components",
+        "common",
+        "helpers",
+        "layouts",
+        "pages",
+        "services",
+        "store",
+        "router"
+    ]
+}

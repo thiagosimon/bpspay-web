@@ -1,0 +1,38 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2017", "dom"],
+        "rootDir": "src",
+        "outDir": "build/dist",
+        "sourceMap": true,
+        "allowJs": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "baseUrl": "./src/",
+        "paths": {
+            "*": ["./src/*"],
+            "redux": ["./node_modules/redux"],
+            "@common/*": ["./src/common/*"],
+            "@componentes/*": ["./src/componentes/*"],
+            "@helpers/*": ["./src/helpers/*"],
+            "@layouts/*": ["src/layouts/*"],
+            "@locales/*": ["./src/locales/*"],
+            "@pages/*": ["./src/pages/*"],
+            "@routes/*": ["src/router/*"],
+            "@services/*": ["./src/services/*"],
+            "@store/*": ["./src/store/*"],
+
+        },
+    },
+    "include": ["src", "**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules", "dist"]
+}
