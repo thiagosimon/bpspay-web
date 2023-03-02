@@ -4,8 +4,10 @@ import { Card, Col, Container, Input, Label, Row, Button } from 'reactstrap'
 import AuthSlider from '../authCarousel'
 import { FOOTER_DESCRIPTION } from '../../../constants'
 
+import { useTranslation } from 'react-i18next'
+
 const Login = () => {
-    document.title = 'Cover SignIn | Velzon - React Admin & Dashboard Template'
+    const { t } = useTranslation()
     return (
         <React.Fragment>
             <div className="auth-page-wrapper py-5 d-flex justify-content-center align-items-center min-vh-100">
@@ -21,7 +23,7 @@ const Login = () => {
                                         <Col lg={6}>
                                             <div className="p-lg-5 p-4 mb-4">
                                                 <div>
-                                                    <h5 className="text-primary">Welcome Back !</h5>
+                                                    <h5 className="text-primary">{t('Welcome.Back')}</h5>
                                                     <p className="text-muted">Sign in to continue to Velzon.</p>
                                                 </div>
 
