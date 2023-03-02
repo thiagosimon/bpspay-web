@@ -43,7 +43,7 @@ import loginImg from '../../../assets/images/modals/login.png'
 import signupImg from '../../../assets/images/modals/signup.png'
 import subscribeImg from '../../../assets/images/modals/subscribe.png'
 import paymentImg from '../../../assets/images/modals/success-payment.png'
-import authbg from '../../../assets/images/auth-one-bg.jpg'
+import authbg from '../../../assets/images/auth-one-bg.png'
 
 const UiModals = () => {
     const [modal_standard, setmodal_standard] = useState(false)

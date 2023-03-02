@@ -4,20 +4,17 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Link } from 'react-router-dom'
 
-// Import Images
-import logoLight from '../../assets/images/logo-light.png'
+const logoLight = require('../../assets/images/logo-light.png')
 
 const AuthSlider = () => {
     return (
         <React.Fragment>
             <Col lg={6}>
                 <div className="p-lg-5 p-4 auth-one-bg h-100">
-                    <div className="bg-overlay"></div>
+                    <div className="bg-overlay carousel-bg-overlay"></div>
                     <div className="position-relative h-100 d-flex flex-column">
                         <div className="mb-4">
-                            <Link to="/dashboard" className="d-block">
-                                <img src={logoLight} alt="" height="18" />
-                            </Link>
+                            <img src={logoLight} alt="logo" height="36" />
                         </div>
                         <div className="mt-auto">
                             <div className="mb-3">
@@ -31,24 +28,26 @@ const AuthSlider = () => {
                                 showStatus={false}
                                 infiniteLoop={true}
                                 className="carousel slide"
-                                id="qoutescarouselIndicators"
+                                // id="qoutescarouselIndicators"
                             >
                                 <div className="carousel-inner text-center text-white pb-5">
                                     <div className="item">
                                         <p className="fs-15 fst-italic">
-                                            " Great! Clean code, clean design, easy for customization. Thanks very much! "
+                                            "Incrível, estamos adorando a BPS PAY, os recursos nos fizeram economizar muito tempo nas tarefas!”
                                         </p>
                                     </div>
                                 </div>
                                 <div className="carousel-inner text-center text-white pb-5">
                                     <div className="item">
-                                        <p className="fs-15 fst-italic">" The theme is really great with an amazing customer support."</p>
+                                        <p className="fs-15 fst-italic">
+                                            "Incrível, estamos adorando a BPS PAY, os recursos nos fizeram economizar muito tempo nas tarefas!”
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="carousel-inner text-center text-white pb-5">
                                     <div className="item">
                                         <p className="fs-15 fst-italic">
-                                            " Great! Clean code, clean design, easy for customization. Thanks very much! "
+                                            "Incrível, estamos adorando a BPS PAY, os recursos nos fizeram economizar muito tempo nas tarefas!”
                                         </p>
                                     </div>
                                 </div>

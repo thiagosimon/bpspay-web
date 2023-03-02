@@ -255,7 +255,7 @@ const EcommerceCart = () => {
                                         <lord-icon
                                             src="https://cdn.lordicon.com/nkmsrxys.json"
                                             trigger="loop"
-                                            colors="primary:#121331,secondary:#8c68cd"
+                                            colors="primary:#121331,secondary:#644BC5"
                                             style={{ width: '80px', height: '80px' }}
                                         ></lord-icon>
                                         <div className="ms-2">

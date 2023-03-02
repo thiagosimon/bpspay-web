@@ -36,10 +36,10 @@ $border-style-mixing: double, dashed, groove, outset, ridge, dotted, inset;
     .border-start-#{$border-style-mixing} {
         border-left-style: #{$border-style-mixing} !important;
     }
-    
+
     // List Group Flush Style
     .list-group-flush {
-        &.border-#{$border-style-mixing} { 
+        &.border-#{$border-style-mixing} {
             border: none !important;
             .list-group-item {
                 border-style: #{$border-style-mixing} !important;
@@ -172,7 +172,7 @@ $value in $theme-colors {
     }
 }
 
-// Search 
+// Search
 .search-box{
     position: relative;
     .form-control{
@@ -190,9 +190,7 @@ $value in $theme-colors {
     }
 }
 
-
 // overlay
-
 .bg-overlay {
     position: absolute;
     height: 100%;
@@ -205,8 +203,19 @@ $value in $theme-colors {
     background-color: $black;
 }
 
-// Btn Customizer
+.login-bg-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+    background-color: $black;
+}
 
+// Btn Customizer
 .customizer-setting {
     position: fixed;
     bottom: 40px;
@@ -214,7 +223,7 @@ $value in $theme-colors {
     z-index: 1000;
 }
 
-// 
+//
 code {
     user-select: all;
 }
@@ -228,7 +237,7 @@ code {
 
 .layout-rightside-col {
 
-    @media (max-width: 1699.98px) { 
+    @media (max-width: 1699.98px) {
         display: none;
         position: fixed !important;
         height: 100vh;
@@ -243,7 +252,7 @@ code {
             bottom: 0px;
             left: 0px;
             background-color: rgba($dark, 0.2);
-           
+
         }
         .layout-rightside {
             margin-top: 0px;
@@ -282,7 +291,7 @@ code {
     white-space: normal;
 }
 
-// Favourite button 
+// Favourite button
 .favourite-btn{
     border-color: transparent;
     .ri-star-fill{
@@ -292,7 +301,7 @@ code {
         border-color: transparent;
         .ri-star-fill{
             color: $warning;
-            
+
             &:before{
                 content: "\f186";
             }

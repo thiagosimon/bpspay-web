@@ -1,34 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Alert, Card, CardBody, Col, Container, Row, Form, Label, Input, FormFeedback } from 'reactstrap';
-import ParticlesAuth from '../ParticlesAuth';
-import logoLight from "../../../assets/images/logo-light.png";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Alert, Card, CardBody, Col, Container, Row, Form, Label, Input, FormFeedback } from 'reactstrap'
+import ParticlesAuth from '../ParticlesAuth'
+import logoLight from '../../../assets/images/logo-light.png'
 
 //formik
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 const BasicPasswReset = () => {
-    document.title="Reset Password | Velzon - React Admin & Dashboard Template";
+    document.title = 'Reset Password | Velzon - React Admin & Dashboard Template'
 
     const validation = useFormik({
         enableReinitialize: true,
-        
+
         initialValues: {
-            email: "",
+            email: ''
         },
         validationSchema: Yup.object({
-            email: Yup.string().required("Please Enter Your Email")
-            .matches("Please include an @ in the email address"),
+            email: Yup.string().required('Please Enter Your Email').matches('Please include an @ in the email address')
         }),
-        onSubmit: (values) => {
+        onSubmit: values => {
             // console.log(values);
         }
-    });
+    })
 
     return (
         <ParticlesAuth>
-            <div className="auth-page-content">                
+            <div className="auth-page-content">
                 <Container>
                     <Row>
                         <Col lg={12}>
@@ -54,10 +53,10 @@ const BasicPasswReset = () => {
                                         <lord-icon
                                             src="https://cdn.lordicon.com/rhvddzym.json"
                                             trigger="loop"
-                                            colors="primary:#8c68cd"
+                                            colors="primary:#644BC5"
                                             className="avatar-xl"
-                                            style={{ width: "120px", height: "120px" }}>
-                                        </lord-icon>
+                                            style={{ width: '120px', height: '120px' }}
+                                        ></lord-icon>
                                     </div>
 
                                     <Alert className="alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
@@ -67,24 +66,26 @@ const BasicPasswReset = () => {
                                         <Form onSubmit={validation.handleSubmit}>
                                             <div className="mb-4">
                                                 <Label className="form-label">Email</Label>
-                                                <Input 
-                                                type="email" 
-                                                className="form-control" 
-                                                id="email"
-                                                placeholder="Enter Email" 
-                                                name="email"
-                                                value={validation.values.email}
-                                                onBlur={validation.handleBlur}
-                                                onChange={validation.handleChange}
-                                                invalid={validation.errors.email && validation.touched.email ? true : false}
+                                                <Input
+                                                    type="email"
+                                                    className="form-control"
+                                                    id="email"
+                                                    placeholder="Enter Email"
+                                                    name="email"
+                                                    value={validation.values.email}
+                                                    onBlur={validation.handleBlur}
+                                                    onChange={validation.handleChange}
+                                                    invalid={validation.errors.email && validation.touched.email ? true : false}
                                                 />
                                                 {validation.errors.email && validation.touched.email ? (
                                                     <FormFeedback type="invalid">{validation.errors.email}</FormFeedback>
-                                                ): null}
+                                                ) : null}
                                             </div>
 
                                             <div className="text-center mt-4">
-                                                <button className="btn btn-primary w-100" type="submit">Send Reset Link</button>
+                                                <button className="btn btn-primary w-100" type="submit">
+                                                    Send Reset Link
+                                                </button>
                                             </div>
                                         </Form>
                                     </div>
@@ -92,15 +93,20 @@ const BasicPasswReset = () => {
                             </Card>
 
                             <div className="mt-4 text-center">
-                                <p className="mb-0">Wait, I remember my password... <Link to="/auth-signin-basic" className="fw-bold text-primary text-decoration-underline"> Click here </Link> </p>
+                                <p className="mb-0">
+                                    Wait, I remember my password...{' '}
+                                    <Link to="/auth-signin-basic" className="fw-bold text-primary text-decoration-underline">
+                                        {' '}
+                                        Click here{' '}
+                                    </Link>{' '}
+                                </p>
                             </div>
-
                         </Col>
                     </Row>
                 </Container>
             </div>
         </ParticlesAuth>
-    );
-};
+    )
+}
 
-export default BasicPasswReset;
+export default BasicPasswReset

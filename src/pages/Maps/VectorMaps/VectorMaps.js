@@ -36,7 +36,7 @@ const VectorMaps = () => {
                                 </CardHeader>
                                 <CardBody>
                                     <div id="usa-vectormap" style={{ height: '350px' }}>
-                                        <Vector value="us_aea" width="724" color="#8c68cd" />
+                                        <Vector value="us_aea" width="724" color="#644BC5" />
                                     </div>
                                 </CardBody>
                             </Card>

@@ -5,6 +5,7 @@
         "assets",
         "components",
         "common",
+        "constants",
         "helpers",
         "layouts",
         "pages",

@@ -23,6 +23,7 @@
             "redux": ["./node_modules/redux"],
             "@common/*": ["./src/common/*"],
             "@componentes/*": ["./src/componentes/*"],
+            "@constants/*": ["./src/constants/*"],
             "@helpers/*": ["./src/helpers/*"],
             "@layouts/*": ["src/layouts/*"],
             "@locales/*": ["./src/locales/*"],

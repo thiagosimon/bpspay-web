@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardHeader, Col, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
-import { currencies } from '../../common/data';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Card, CardHeader, Col, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap'
+import { currencies } from '../../common/data'
 
 const MyCurrencies = () => {
     return (
@@ -14,7 +14,7 @@ const MyCurrencies = () => {
                             <button className="btn btn-soft-primary btn-sm">24H</button>
                         </div>
                         <div className="flex-shrink-0 ms-2">
-                            <UncontrolledDropdown className="card-header-dropdown" direction='start'>
+                            <UncontrolledDropdown className="card-header-dropdown" direction="start">
                                 <DropdownToggle className="btn btn-soft-primary btn-sm" role="button" tag="a">
                                     Get Report<i className="mdi mdi-chevron-down align-middle ms-1"></i>
                                 </DropdownToggle>
@@ -53,10 +53,19 @@ const MyCurrencies = () => {
                                                 </div>
                                             </td>
                                             <td>${item.price}</td>
-                                            <td><h6 className={"fs-13 mb-0 text-" + item.iconClass}><i className={"align-middle me-1 " + item.icon}></i>{item.change}</h6></td>
+                                            <td>
+                                                <h6 className={'fs-13 mb-0 text-' + item.iconClass}>
+                                                    <i className={'align-middle me-1 ' + item.icon}></i>
+                                                    {item.change}
+                                                </h6>
+                                            </td>
                                             <td>${item.balance}</td>
                                             <td>{item.totalCoin}</td>
-                                            <td><Link to="/apps-crypto-buy-sell" className="btn btn-sm btn-soft-primary">Trade</Link></td>
+                                            <td>
+                                                <Link to="/apps-crypto-buy-sell" className="btn btn-sm btn-soft-primary">
+                                                    Trade
+                                                </Link>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -66,7 +75,7 @@ const MyCurrencies = () => {
                 </Card>
             </Col>
         </React.Fragment>
-    );
-};
+    )
+}
 
-export default MyCurrencies;
+export default MyCurrencies

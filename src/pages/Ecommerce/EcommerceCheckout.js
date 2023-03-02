@@ -617,7 +617,7 @@ const EcommerceCheckout = () => {
                                                         <lord-icon
                                                             src="https://cdn.lordicon.com/lupuorrc.json"
                                                             trigger="loop"
-                                                            colors="primary:#8c68cd,secondary:#4788ff"
+                                                            colors="primary:#644BC5,secondary:#4788ff"
                                                             style={{ width: '120px', height: '120px' }}
                                                         ></lord-icon>
                                                     </div>

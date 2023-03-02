@@ -259,7 +259,7 @@ const EcommerceOrderDetail = props => {
                                     <lord-icon
                                         src="https://cdn.lordicon.com/uetqnvvg.json"
                                         trigger="loop"
-                                        colors="primary:#8c68cd,secondary:#4788ff"
+                                        colors="primary:#644BC5,secondary:#4788ff"
                                         style={{ width: '80px', height: '80px' }}
                                     ></lord-icon>
                                     <h5 className="fs-16 mt-2">RQK Logistics</h5>

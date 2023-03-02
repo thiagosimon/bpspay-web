@@ -118,7 +118,7 @@ const Ranking = () => {
                                                 <lord-icon
                                                     src="https://cdn.lordicon.com/msoeawqm.json"
                                                     trigger="loop"
-                                                    colors="primary:#8c68cd,secondary:#4788ff"
+                                                    colors="primary:#644BC5,secondary:#4788ff"
                                                     style={{ width: '75px', height: '75px' }}
                                                 ></lord-icon>
                                                 <h5 className="mt-2">Sorry! No Result Found</h5>

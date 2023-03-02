@@ -1,13 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardBody, Col, Container, Row } from 'reactstrap';
-import ParticlesAuth from "../ParticlesAuth";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Card, CardBody, Col, Container, Row } from 'reactstrap'
+import ParticlesAuth from '../ParticlesAuth'
 
 //import images
-import logoLight from "../../../assets/images/logo-light.png";
+import logoLight from '../../../assets/images/logo-light.png'
 
 const BasicLogout = () => {
-    document.title="Log Out | Velzon - React Admin & Dashboard Template";
+    document.title = 'Log Out | Velzon - React Admin & Dashboard Template'
     return (
         <React.Fragment>
             <div className="auth-page-content">
@@ -35,15 +35,19 @@ const BasicLogout = () => {
                                                 <lord-icon
                                                     src="https://cdn.lordicon.com/hzomhqxz.json"
                                                     trigger="loop"
-                                                    colors="primary:#8c68cd,secondary:#4788ffs"
-                                                    style={{ width: "180px", height: "180px" }}>
-                                                </lord-icon>
+                                                    colors="primary:#644BC5,secondary:#4788ffs"
+                                                    style={{ width: '180px', height: '180px' }}
+                                                ></lord-icon>
 
                                                 <div className="mt-4 pt-2">
                                                     <h5>You are Logged Out</h5>
-                                                    <p className="text-muted">Thank you for using <span className="fw-semibold">velzon</span> admin template</p>
+                                                    <p className="text-muted">
+                                                        Thank you for using <span className="fw-semibold">velzon</span> admin template
+                                                    </p>
                                                     <div className="mt-4">
-                                                        <Link to="/auth-signin-basic" className="btn btn-primary w-100">Sign In</Link>
+                                                        <Link to="/auth-signin-basic" className="btn btn-primary w-100">
+                                                            Sign In
+                                                        </Link>
                                                     </div>
                                                 </div>
                                             </CardBody>
@@ -53,11 +57,10 @@ const BasicLogout = () => {
                             </Container>
                         </div>
                     </ParticlesAuth>
-
                 </div>
-            </div >
-        </React.Fragment >
-    );
-};
+            </div>
+        </React.Fragment>
+    )
+}
 
-export default BasicLogout;
+export default BasicLogout

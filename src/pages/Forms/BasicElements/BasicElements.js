@@ -212,7 +212,7 @@ const BasicElements = () => {
                                                         type="color"
                                                         className="form-control form-control-color w-100"
                                                         id="colorPicker"
-                                                        defaultValue="#8c68cd"
+                                                        defaultValue="#644BC5"
                                                     />
                                                 </div>
                                             </Col>

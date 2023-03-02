@@ -72,7 +72,7 @@ const ForgetPasswordPage = props => {
                                         <lord-icon
                                             src="https://cdn.lordicon.com/rhvddzym.json"
                                             trigger="loop"
-                                            colors="primary:#8c68cd"
+                                            colors="primary:#644BC5"
                                             className="avatar-xl"
                                             style={{ width: '120px', height: '120px' }}
                                         ></lord-icon>

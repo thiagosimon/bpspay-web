@@ -1,28 +1,28 @@
-import React, { useEffect } from "react";
-import { Row, Col, CardBody, Card, Alert, Container, Input, Label, Form, FormFeedback, Button } from "reactstrap";
+import React, { useEffect } from 'react'
+import { Row, Col, CardBody, Card, Alert, Container, Input, Label, Form, FormFeedback, Button } from 'reactstrap'
 
 // Formik Validation
-import * as Yup from "yup";
-import { useFormik } from "formik";
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 // action
-import { registerUser, apiError, resetRegisterFlag } from "../../store/actions";
+import { registerUser, apiError, resetRegisterFlag } from '../../store/actions'
 
 //redux
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux'
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom'
 
-//import images 
-import logoLight from "../../assets/images/logo-light.png";
-import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
+//import images
+import logoLight from '../../assets/images/logo-light.png'
+import ParticlesAuth from '../AuthenticationInner/ParticlesAuth'
 
 const Register = () => {
-    const history = useNavigate();
-    const dispatch = useDispatch();
+    const history = useNavigate()
+    const dispatch = useDispatch()
 
     const validation = useFormik({
         // enableReinitialize : use this flag when initial values needs to be changed
@@ -35,44 +35,40 @@ const Register = () => {
             confirm_password: ''
         },
         validationSchema: Yup.object({
-            email: Yup.string().required("Please Enter Your Email"),
-            first_name: Yup.string().required("Please Enter Your Username"),
-            password: Yup.string().required("Please Enter Your Password"),
-            confirm_password: Yup.string().when("password", {
+            email: Yup.string().required('Please Enter Your Email'),
+            first_name: Yup.string().required('Please Enter Your Username'),
+            password: Yup.string().required('Please Enter Your Password'),
+            confirm_password: Yup.string().when('password', {
                 is: val => (val && val.length > 0 ? true : false),
-                then: Yup.string().oneOf(
-                    [Yup.ref("password")],
-                    "Confirm Password Isn't Match"
-                )
+                then: Yup.string().oneOf([Yup.ref('password')], "Confirm Password Isn't Match")
             })
         }),
-        onSubmit: (values) => {
-            dispatch(registerUser(values));
+        onSubmit: values => {
+            dispatch(registerUser(values))
         }
-    });
+    })
 
     const { error, registrationError, success } = useSelector(state => ({
         registrationError: state.Account.registrationError,
         success: state.Account.success,
         error: state.Account.error
-    }));
+    }))
 
     useEffect(() => {
-        dispatch(apiError(""));
-    }, [dispatch]);
+        dispatch(apiError(''))
+    }, [dispatch])
 
     useEffect(() => {
         if (success) {
-            setTimeout(() => history("/login"), 3000);
+            setTimeout(() => history('/login'), 3000)
         }
 
         setTimeout(() => {
-            dispatch(resetRegisterFlag());
-        }, 3000);
+            dispatch(resetRegisterFlag())
+        }, 3000)
+    }, [dispatch, success, error, history])
 
-    }, [dispatch, success, error, history]);
-
-    document.title = "Basic SignUp | Velzon - React Admin & Dashboard Template";
+    document.title = 'Basic SignUp | Velzon - React Admin & Dashboard Template'
 
     return (
         <React.Fragment>
@@ -95,7 +91,6 @@ const Register = () => {
                         <Row className="justify-content-center">
                             <Col md={8} lg={6} xl={5}>
                                 <Card className="mt-4 card-bg-fill">
-
                                     <CardBody className="p-4">
                                         <div className="text-center mt-2">
                                             <h5 className="text-primary">Create New Account</h5>
@@ -103,31 +98,41 @@ const Register = () => {
                                         </div>
                                         <div className="p-2 mt-4">
                                             <Form
-                                                onSubmit={(e) => {
-                                                    e.preventDefault();
-                                                    validation.handleSubmit();
-                                                    return false;
+                                                onSubmit={e => {
+                                                    e.preventDefault()
+                                                    validation.handleSubmit()
+                                                    return false
                                                 }}
-                                                className="needs-validation" action="#">
-
+                                                className="needs-validation"
+                                                action="#"
+                                            >
                                                 {success && success ? (
                                                     <>
-                                                        {toast("Your Redirect To Login Page...", { position: "top-right", hideProgressBar: false, className: 'bg-success text-white', progress: undefined, toastId: "" })}
+                                                        {toast('Your Redirect To Login Page...', {
+                                                            position: 'top-right',
+                                                            hideProgressBar: false,
+                                                            className: 'bg-success text-white',
+                                                            progress: undefined,
+                                                            toastId: ''
+                                                        })}
                                                         <ToastContainer autoClose={2000} limit={1} />
-                                                        <Alert color="success">
-                                                            Register User Successfully and Your Redirect To Login Page...
-                                                        </Alert>
+                                                        <Alert color="success">Register User Successfully and Your Redirect To Login Page...</Alert>
                                                     </>
                                                 ) : null}
 
                                                 {error && error ? (
-                                                    <Alert color="danger"><div>
-                                                        {/* {registrationError} */}
-                                                        Email has been Register Before, Please Use Another Email Address... </div></Alert>
+                                                    <Alert color="danger">
+                                                        <div>
+                                                            {/* {registrationError} */}
+                                                            Email has been Register Before, Please Use Another Email Address...{' '}
+                                                        </div>
+                                                    </Alert>
                                                 ) : null}
 
                                                 <div className="mb-3">
-                                                    <Label htmlFor="useremail" className="form-label">Email <span className="text-danger">*</span></Label>
+                                                    <Label htmlFor="useremail" className="form-label">
+                                                        Email <span className="text-danger">*</span>
+                                                    </Label>
                                                     <Input
                                                         id="email"
                                                         name="email"
@@ -136,80 +141,90 @@ const Register = () => {
                                                         type="email"
                                                         onChange={validation.handleChange}
                                                         onBlur={validation.handleBlur}
-                                                        value={validation.values.email || ""}
-                                                        invalid={
-                                                            validation.touched.email && validation.errors.email ? true : false
-                                                        }
+                                                        value={validation.values.email || ''}
+                                                        invalid={validation.touched.email && validation.errors.email ? true : false}
                                                     />
                                                     {validation.touched.email && validation.errors.email ? (
-                                                        <FormFeedback type="invalid"><div>{validation.errors.email}</div></FormFeedback>
+                                                        <FormFeedback type="invalid">
+                                                            <div>{validation.errors.email}</div>
+                                                        </FormFeedback>
                                                     ) : null}
-
                                                 </div>
                                                 <div className="mb-3">
-                                                    <Label htmlFor="username" className="form-label">Username <span className="text-danger">*</span></Label>
+                                                    <Label htmlFor="username" className="form-label">
+                                                        Username <span className="text-danger">*</span>
+                                                    </Label>
                                                     <Input
                                                         name="first_name"
                                                         type="text"
                                                         placeholder="Enter username"
                                                         onChange={validation.handleChange}
                                                         onBlur={validation.handleBlur}
-                                                        value={validation.values.first_name || ""}
-                                                        invalid={
-                                                            validation.touched.first_name && validation.errors.first_name ? true : false
-                                                        }
+                                                        value={validation.values.first_name || ''}
+                                                        invalid={validation.touched.first_name && validation.errors.first_name ? true : false}
                                                     />
                                                     {validation.touched.first_name && validation.errors.first_name ? (
-                                                        <FormFeedback type="invalid"><div>{validation.errors.first_name}</div></FormFeedback>
+                                                        <FormFeedback type="invalid">
+                                                            <div>{validation.errors.first_name}</div>
+                                                        </FormFeedback>
                                                     ) : null}
-
                                                 </div>
 
                                                 <div className="mb-3">
-                                                    <Label htmlFor="userpassword" className="form-label">Password <span className="text-danger">*</span></Label>
+                                                    <Label htmlFor="userpassword" className="form-label">
+                                                        Password <span className="text-danger">*</span>
+                                                    </Label>
                                                     <Input
                                                         name="password"
                                                         type="password"
                                                         placeholder="Enter Password"
                                                         onChange={validation.handleChange}
                                                         onBlur={validation.handleBlur}
-                                                        value={validation.values.password || ""}
-                                                        invalid={
-                                                            validation.touched.password && validation.errors.password ? true : false
-                                                        }
+                                                        value={validation.values.password || ''}
+                                                        invalid={validation.touched.password && validation.errors.password ? true : false}
                                                     />
                                                     {validation.touched.password && validation.errors.password ? (
-                                                        <FormFeedback type="invalid"><div>{validation.errors.password}</div></FormFeedback>
+                                                        <FormFeedback type="invalid">
+                                                            <div>{validation.errors.password}</div>
+                                                        </FormFeedback>
                                                     ) : null}
-
                                                 </div>
 
                                                 <div className="mb-2">
-                                                    <Label htmlFor="confirmPassword" className="form-label">Confirm Password <span className="text-danger">*</span></Label>
+                                                    <Label htmlFor="confirmPassword" className="form-label">
+                                                        Confirm Password <span className="text-danger">*</span>
+                                                    </Label>
                                                     <Input
                                                         name="confirm_password"
                                                         type="password"
                                                         placeholder="Confirm Password"
                                                         onChange={validation.handleChange}
                                                         onBlur={validation.handleBlur}
-                                                        value={validation.values.confirm_password || ""}
+                                                        value={validation.values.confirm_password || ''}
                                                         invalid={
                                                             validation.touched.confirm_password && validation.errors.confirm_password ? true : false
                                                         }
                                                     />
                                                     {validation.touched.confirm_password && validation.errors.confirm_password ? (
-                                                        <FormFeedback type="invalid"><div>{validation.errors.confirm_password}</div></FormFeedback>
+                                                        <FormFeedback type="invalid">
+                                                            <div>{validation.errors.confirm_password}</div>
+                                                        </FormFeedback>
                                                     ) : null}
-
                                                 </div>
 
                                                 <div className="mb-4">
-                                                    <p className="mb-0 fs-12 text-muted fst-italic">By registering you agree to the Velzon
-                                                        <Link to="#" className="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use</Link></p>
+                                                    <p className="mb-0 fs-12 text-muted fst-italic">
+                                                        By registering you agree to the Velzon
+                                                        <Link to="#" className="text-primary text-decoration-underline fst-normal fw-medium">
+                                                            Terms of Use
+                                                        </Link>
+                                                    </p>
                                                 </div>
 
                                                 <div className="mt-4">
-                                                    <button className="btn btn-success w-100" type="submit">Sign Up</button>
+                                                    <button className="btn btn-success w-100" type="submit">
+                                                        Sign Up
+                                                    </button>
                                                 </div>
 
                                                 <div className="mt-4 text-center">
@@ -218,10 +233,18 @@ const Register = () => {
                                                     </div>
 
                                                     <div>
-                                                        <button type="button" className="btn btn-primary btn-icon waves-effect waves-light"><i className="ri-facebook-fill fs-16"></i></button>{" "}
-                                                        <button type="button" className="btn btn-danger btn-icon waves-effect waves-light"><i className="ri-google-fill fs-16"></i></button>{" "}
-                                                        <button type="button" className="btn btn-dark btn-icon waves-effect waves-light"><i className="ri-github-fill fs-16"></i></button>{" "}
-                                                        <button type="button" className="btn btn-info btn-icon waves-effect waves-light"><i className="ri-twitter-fill fs-16"></i></button>
+                                                        <button type="button" className="btn btn-primary btn-icon waves-effect waves-light">
+                                                            <i className="ri-facebook-fill fs-16"></i>
+                                                        </button>{' '}
+                                                        <button type="button" className="btn btn-danger btn-icon waves-effect waves-light">
+                                                            <i className="ri-google-fill fs-16"></i>
+                                                        </button>{' '}
+                                                        <button type="button" className="btn btn-dark btn-icon waves-effect waves-light">
+                                                            <i className="ri-github-fill fs-16"></i>
+                                                        </button>{' '}
+                                                        <button type="button" className="btn btn-info btn-icon waves-effect waves-light">
+                                                            <i className="ri-twitter-fill fs-16"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </Form>
@@ -229,7 +252,13 @@ const Register = () => {
                                     </CardBody>
                                 </Card>
                                 <div className="mt-4 text-center">
-                                    <p className="mb-0">Already have an account ? <Link to="/login" className="fw-semibold text-primary text-decoration-underline"> Signin </Link> </p>
+                                    <p className="mb-0">
+                                        Already have an account ?{' '}
+                                        <Link to="/login" className="fw-semibold text-primary text-decoration-underline">
+                                            {' '}
+                                            Signin{' '}
+                                        </Link>{' '}
+                                    </p>
                                 </div>
                             </Col>
                         </Row>
@@ -237,7 +266,7 @@ const Register = () => {
                 </div>
             </ParticlesAuth>
         </React.Fragment>
-    );
-};
+    )
+}
 
-export default Register;
+export default Register

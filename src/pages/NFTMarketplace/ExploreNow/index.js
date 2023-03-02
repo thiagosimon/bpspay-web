@@ -245,7 +245,7 @@ const ExploreNow = () => {
                         <lord-icon
                             src="https://cdn.lordicon.com/msoeawqm.json"
                             trigger="loop"
-                            colors="primary:#8c68cd,secondary:#4788ff"
+                            colors="primary:#644BC5,secondary:#4788ff"
                             style={{ width: '72px', height: '72px' }}
                         ></lord-icon>
                         <h5 className="mt-4">Sorry! No Result Found</h5>
