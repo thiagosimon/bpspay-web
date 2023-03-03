@@ -28,7 +28,6 @@ const AuthSlider = () => {
                                 showStatus={false}
                                 infiniteLoop={true}
                                 className="carousel slide"
-                                // id="qoutescarouselIndicators"
                             >
                                 <div className="carousel-inner text-center text-white pb-5">
                                     <div className="item">
