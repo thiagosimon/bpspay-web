@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 //import Scss
 import './assets/scss/themes.scss'
@@ -11,7 +11,8 @@ import Route from './router'
 
 // Fake Backend
 import fakeBackend from './helpers/AuthType/fakeBackend'
-
+import { changeLayoutMode } from './store/actions'
+import { useDispatch } from 'react-redux'
 // Activating fake backend
 fakeBackend()
 
@@ -30,6 +31,15 @@ fakeBackend()
 // initFirebaseBackend(firebaseConfig);
 
 function App() {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const setDarkMode = () => {
+            dispatch(changeLayoutMode('light'))
+        }
+        setDarkMode()
+    }, [])
+
     return (
         <React.Fragment>
             <Route />

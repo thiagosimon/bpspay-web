@@ -189,7 +189,7 @@ import Offlinepage from '../pages/AuthenticationInner/Errors/Offlinepage'
 import Login from '../pages/Authentication/Login/Login'
 import ForgetPasswordPage from '../pages/Authentication/ForgetPassword'
 import Logout from '../pages/Authentication/Logout'
-import Register from '../pages/Authentication/Register'
+import Register from '../pages/Authentication/Register/Register'
 
 //Charts
 import LineCharts from '../pages/Charts/ApexCharts/LineCharts'

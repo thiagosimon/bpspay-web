@@ -8,6 +8,7 @@
         "constants",
         "helpers",
         "layouts",
+        "locales",
         "pages",
         "services",
         "store",

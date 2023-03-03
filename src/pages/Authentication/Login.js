@@ -55,8 +55,8 @@ const Login = props => {
         enableReinitialize: true,
 
         initialValues: {
-            email: userLogin.email || 'admin@themesbrand.com' || '',
-            password: userLogin.password || '123456' || ''
+            email: userLogin.email || 'admin@bpspay.com.br' || '',
+            password: userLogin.password || '12345678' || ''
         },
         validationSchema: Yup.object({
             email: Yup.string().required('Please Enter Your Email'),

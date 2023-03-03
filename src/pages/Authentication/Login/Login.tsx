@@ -1,13 +1,76 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
 import { Link } from 'react-router-dom'
-import { Card, Col, Container, Input, Label, Row, Button } from 'reactstrap'
+import { Card, CardBody, Col, Container, Input, Label, Row, Button, Form, FormFeedback, Alert, Spinner } from 'reactstrap'
+
 import AuthSlider from '../authCarousel'
 import { FOOTER_DESCRIPTION } from '../../../constants'
+import i18n from '../../../i18n'
 
-import { useTranslation } from 'react-i18next'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
+import { useSelector, useDispatch } from 'react-redux'
+import { loginUser, socialLogin, resetLoginFlag } from '../../../store/actions'
+import AuthFooter from '../authFooter'
+
+type LoginState = {
+    Login: {
+        user: any
+        errorMsg: string
+        loading: boolean
+        error: boolean
+    }
+}
 
 const Login = () => {
-    const { t } = useTranslation()
+    const dispatch = useDispatch()
+
+    const { user, errorMsg, loading, error } = useSelector((state: LoginState) => ({
+        user: state.Login.user,
+        errorMsg: state.Login.errorMsg,
+        loading: state.Login.loading,
+        error: state.Login.error
+    }))
+
+    const [userLogin, setUserLogin] = useState({
+        email: '',
+        password: ''
+    })
+    const [passwordShow, setPasswordShow] = useState(false)
+
+    const validation = useFormik({
+        enableReinitialize: true,
+        initialValues: {
+            email: userLogin.email || 'admin@bpspay.com.br' || '',
+            password: '12345678' || ''
+        },
+        validationSchema: Yup.object({
+            email: Yup.string().required('Please Enter Your Email'),
+            password: Yup.string().required('Please Enter Your Password')
+        }),
+        onSubmit: values => {
+            console.log('values', values)
+            dispatch(loginUser(values, '/dashboard'))
+        }
+    })
+
+    useEffect(() => {
+        if (user && user) {
+            setUserLogin({
+                email: user.user.email,
+                password: user.user.confirm_password
+            })
+        }
+    }, [user])
+
+    useEffect(() => {
+        if (error) {
+            setTimeout(() => {
+                dispatch(resetLoginFlag())
+            }, 3000)
+        }
+    }, [dispatch, error])
+
     return (
         <React.Fragment>
             <div className="auth-page-wrapper py-5 d-flex justify-content-center align-items-center min-vh-100">
@@ -23,39 +86,57 @@ const Login = () => {
                                         <Col lg={6}>
                                             <div className="p-lg-5 p-4 mb-4">
                                                 <div>
-                                                    <h5 className="text-primary">{t('Welcome.Back')}</h5>
-                                                    <p className="text-muted">Sign in to continue to Velzon.</p>
+                                                    <h5 className="text-primary">{i18n.t<string>('titles.welcome')}</h5>
+                                                    <p className="text-muted">{i18n.t<string>('subtitles.loginPromptMessage')}</p>
                                                 </div>
 
                                                 <div className="mt-4">
                                                     <form action="/">
                                                         <div className="mb-3">
-                                                            <Label htmlFor="username" className="form-label">
-                                                                Username
+                                                            <Label htmlFor="email" className="form-label">
+                                                                {i18n.t<string>('labels.email')}
                                                             </Label>
-                                                            <Input type="text" className="form-control" id="username" placeholder="Enter username" />
+                                                            <Input
+                                                                name="email"
+                                                                className="form-control"
+                                                                placeholder={i18n.t<string>('placeholder.email')}
+                                                                type="email"
+                                                                onChange={validation.handleChange}
+                                                                onBlur={validation.handleBlur}
+                                                                value={validation.values.email || ''}
+                                                                invalid={validation.touched.email && validation.errors.email ? true : false}
+                                                            />
+                                                            {validation.touched.email && validation.errors.email ? (
+                                                                <FormFeedback type="invalid">{validation.errors.email}</FormFeedback>
+                                                            ) : null}
                                                         </div>
 
                                                         <div className="mb-3">
                                                             <div className="float-end">
-                                                                <Link to="/auth-pass-reset-cover" className="text-muted">
-                                                                    Forgot password?
+                                                                <Link to="/forgot-password" className="text-muted">
+                                                                    {i18n.t<string>('labels.forgotPassword')}
                                                                 </Link>
                                                             </div>
                                                             <Label className="form-label" htmlFor="password-input">
-                                                                Password
+                                                                {i18n.t<string>('labels.password')}
                                                             </Label>
                                                             <div className="position-relative auth-pass-inputgroup mb-3">
                                                                 <Input
-                                                                    type="password"
+                                                                    name="password"
+                                                                    value={validation.values.password || ''}
+                                                                    type={passwordShow ? 'text' : 'password'}
                                                                     className="form-control pe-5 password-input"
-                                                                    placeholder="Enter password"
+                                                                    onChange={validation.handleChange}
+                                                                    onBlur={validation.handleBlur}
+                                                                    invalid={validation.touched.password && validation.errors.password ? true : false}
+                                                                    placeholder={i18n.t<string>('placeholder.enterPassword')}
                                                                     id="password-input"
                                                                 />
                                                                 <button
                                                                     className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                                                     type="button"
                                                                     id="password-addon"
+                                                                    onClick={() => setPasswordShow(!passwordShow)}
                                                                 >
                                                                     <i className="ri-eye-fill align-middle"></i>
                                                                 </button>
@@ -65,45 +146,35 @@ const Login = () => {
                                                         <div className="form-check">
                                                             <Input className="form-check-input" type="checkbox" value="" id="auth-remember-check" />
                                                             <Label className="form-check-label" htmlFor="auth-remember-check">
-                                                                Remember me
+                                                                {i18n.t<string>('labels.remindMe')}
                                                             </Label>
                                                         </div>
 
                                                         <div className="mt-4">
-                                                            <Button color="primary" className="w-100" type="submit">
-                                                                Sign In
+                                                            <Button
+                                                                color="primary"
+                                                                disabled={error || loading}
+                                                                className="btn btn-primary w-100"
+                                                                type="submit"
+                                                            >
+                                                                {error ? null : loading ? (
+                                                                    <Spinner size="sm" className="me-2">
+                                                                        {' '}
+                                                                        {i18n.t<string>('buttons.loading')}...{' '}
+                                                                    </Spinner>
+                                                                ) : null}
+                                                                {i18n.t<string>('buttons.signIn')}
                                                             </Button>
                                                         </div>
-
-                                                        {/* <div className="mt-4 text-center">
-                                                            <div className="signin-other-title">
-                                                                <h5 className="fs-13 mb-4 title">Sign In with</h5>
-                                                            </div>
-
-                                                            <div>
-                                                                <Button color="primary" className="btn-icon me-1" onClick={() => {}}>
-                                                                    <i className="ri-facebook-fill fs-16"></i>
-                                                                </Button>
-                                                                <Button color="danger" className="btn-icon me-1">
-                                                                    <i className="ri-google-fill fs-16"></i>
-                                                                </Button>
-                                                                <Button color="dark" className="btn-icon me-1">
-                                                                    <i className="ri-github-fill fs-16"></i>
-                                                                </Button>
-                                                                <Button color="info" className="btn-icon">
-                                                                    <i className="ri-twitter-fill fs-16"></i>
-                                                                </Button>
-                                                            </div>
-                                                        </div> */}
                                                     </form>
                                                 </div>
 
                                                 <div className="mt-5 text-center">
                                                     <p className="pt-5 mb-0">
-                                                        Don't have an account ?{' '}
-                                                        <a href="/auth-signup-cover" className="fw-semibold text-primary text-decoration-underline">
+                                                        {i18n.t<string>('labels.dontHaveAccount')}{' '}
+                                                        <a href="/register" className="fw-semibold text-primary text-decoration-underline">
                                                             {' '}
-                                                            Signup
+                                                            {i18n.t<string>('hyperlink.signUp')}
                                                         </a>{' '}
                                                     </p>
                                                 </div>
@@ -116,20 +187,7 @@ const Login = () => {
                     </Container>
                 </div>
 
-                <footer className="footer">
-                    <Container>
-                        <Row>
-                            <Col lg={12}>
-                                <div className="text-center">
-                                    <p className="mb-0">
-                                        &copy; {new Date().getFullYear()} {FOOTER_DESCRIPTION.BRAND_NAME}.{FOOTER_DESCRIPTION.DEVELOPMENT_BY}{' '}
-                                        <i className="mdi mdi-heart text-danger"></i> {FOOTER_DESCRIPTION.COMPANY_NAME}
-                                    </p>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                </footer>
+                <AuthFooter />
             </div>
         </React.Fragment>
     )
