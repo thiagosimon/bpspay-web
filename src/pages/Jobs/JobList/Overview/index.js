@@ -1,6 +1,5 @@
 import React from 'react'
 import { Col, Container, Row } from 'reactstrap'
-import BreadCrumb from '../../../../components/Common/BreadCrumb'
 import Header from './Header'
 import JobDescription from './JobDescription'
 import RelatedJobs from './RelatedJobs'

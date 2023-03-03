@@ -1,33 +1,33 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react'
-import { Link } from 'react-router-dom'
 import { isEmpty } from 'lodash'
 import * as moment from 'moment'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 // Import Images
 import dummyImg from '../../assets/images/users/user-dummy-img.jpg'
 
+import Select from 'react-select'
 import {
+    Card,
+    CardBody,
+    CardHeader,
     Col,
     Container,
-    Row,
-    Card,
-    CardHeader,
-    CardBody,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
     DropdownItem,
-    Label,
-    Input,
-    Modal,
-    ModalHeader,
-    ModalBody,
+    DropdownMenu,
+    DropdownToggle,
     Form,
+    FormFeedback,
+    Input,
+    Label,
+    Modal,
+    ModalBody,
     ModalFooter,
+    ModalHeader,
+    Row,
     Table,
-    FormFeedback
+    UncontrolledDropdown
 } from 'reactstrap'
-import Select from 'react-select'
 
 import BreadCrumb from '../../components/Common/BreadCrumb'
 import DeleteModal from '../../components/Common/DeleteModal'
@@ -37,22 +37,22 @@ import ExportCSVModal from '../../components/Common/ExportCSVModal'
 
 //Import actions
 import {
-    getContacts as onGetContacts,
     addNewContact as onAddNewContact,
-    updateContact as onUpdateContact,
-    deleteContact as onDeleteContact
+    deleteContact as onDeleteContact,
+    getContacts as onGetContacts,
+    updateContact as onUpdateContact
 } from '../../store/actions'
 //redux
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import TableContainer from '../../components/Common/TableContainer'
 
 // Formik
-import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
-import Loader from '../../components/Common/Loader'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Loader from '../../components/Common/Loader'
 
 const CrmContacts = () => {
     const dispatch = useDispatch()

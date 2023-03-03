@@ -1,4 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import Dragula from 'react-dragula'
+import Flatpickr from 'react-flatpickr'
+import { Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import {
     Col,
     Container,
@@ -11,27 +15,23 @@ import {
     ModalBody,
     ModalHeader,
     Row,
-    UncontrolledButtonDropdown,
     UncontrolledCollapse
 } from 'reactstrap'
 import SimpleBar from 'simplebar-react'
-import Flatpickr from 'react-flatpickr'
-import Dragula from 'react-dragula'
-import { ToastContainer } from 'react-toastify'
-import { Link } from 'react-router-dom'
 
-import DeleteModal from '../../components/Common/DeleteModal'
 import taskImg from '../../assets/images/task.png'
+import DeleteModal from '../../components/Common/DeleteModal'
 
 //redux
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 // Formik
-import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 // Import Images
 import avatar1 from '../../assets/images/users/avatar-1.jpg'
+import avatar10 from '../../assets/images/users/avatar-10.jpg'
 import avatar2 from '../../assets/images/users/avatar-2.jpg'
 import avatar3 from '../../assets/images/users/avatar-3.jpg'
 import avatar4 from '../../assets/images/users/avatar-4.jpg'
@@ -40,16 +40,15 @@ import avatar6 from '../../assets/images/users/avatar-6.jpg'
 import avatar7 from '../../assets/images/users/avatar-7.jpg'
 import avatar8 from '../../assets/images/users/avatar-8.jpg'
 import avatar9 from '../../assets/images/users/avatar-9.jpg'
-import avatar10 from '../../assets/images/users/avatar-10.jpg'
 
 //import action
 import {
-    getTodos as onGetTodos,
-    updateTodo as onupdateTodo,
-    deleteTodo as onDeleteTodo,
+    addNewProject as onAddNewProject,
     addNewTodo as onAddNewTodo,
+    deleteTodo as onDeleteTodo,
     getProjects as onGetProjects,
-    addNewProject as onAddNewProject
+    getTodos as onGetTodos,
+    updateTodo as onupdateTodo
 } from '../../store/actions'
 
 const Status = ({ status }) => {

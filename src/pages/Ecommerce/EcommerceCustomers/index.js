@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react'
-import { Container, Row, Col, Card, CardHeader, Modal, Form, ModalBody, ModalFooter, ModalHeader, Label, Input, FormFeedback } from 'reactstrap'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Card, CardHeader, Col, Container, Form, FormFeedback, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap'
 
-import { Link } from 'react-router-dom'
-import Flatpickr from 'react-flatpickr'
 import { isEmpty } from 'lodash'
 import * as moment from 'moment'
+import Flatpickr from 'react-flatpickr'
+import { Link } from 'react-router-dom'
 
 // Formik
-import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 // Export Modal
 import ExportCSVModal from '../../../components/Common/ExportCSVModal'
@@ -18,14 +18,14 @@ import BreadCrumb from '../../../components/Common/BreadCrumb'
 import DeleteModal from '../../../components/Common/DeleteModal'
 
 import {
-    getCustomers as onGetCustomers,
     addNewCustomer as onAddNewCustomer,
-    updateCustomer as onUpdateCustomer,
-    deleteCustomer as onDeleteCustomer
+    deleteCustomer as onDeleteCustomer,
+    getCustomers as onGetCustomers,
+    updateCustomer as onUpdateCustomer
 } from '../../../store/actions'
 
 //redux
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import TableContainer from '../../../components/Common/TableContainer'
 
 import { toast, ToastContainer } from 'react-toastify'

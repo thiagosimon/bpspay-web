@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import { Card, CardBody, CardHeader, Col, Container, Input, Label, Row } from 'reactstrap'
 import BreadCrumb from '../../../components/Common/BreadCrumb'
 //Import Flatepicker
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
 import Flatpickr from 'react-flatpickr'
 import Select from 'react-select'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 import Dropzone from 'react-dropzone'
 

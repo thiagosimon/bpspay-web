@@ -1,37 +1,37 @@
+import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
 //Import Icons
 import FeatherIcon from 'feather-icons-react'
 
-import { Card, CardBody, Container, Form, FormFeedback, Input, Label, Modal, ModalBody, ModalHeader, Row, Col } from 'reactstrap'
+import { Card, CardBody, Col, Container, Form, FormFeedback, Input, Label, Modal, ModalBody, ModalHeader, Row } from 'reactstrap'
 
-import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
-import FullCalendar from '@fullcalendar/react'
+import BootstrapTheme from '@fullcalendar/bootstrap'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction'
-import BootstrapTheme from '@fullcalendar/bootstrap'
+import FullCalendar from '@fullcalendar/react'
 import Flatpickr from 'react-flatpickr'
 
 //redux
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import BreadCrumb from '../../components/Common/BreadCrumb'
 import DeleteModal from '../../components/Common/DeleteModal'
 
 //Simple bar
+import listPlugin from '@fullcalendar/list'
 import SimpleBar from 'simplebar-react'
 import UpcommingEvents from './UpcommingEvents'
-import listPlugin from '@fullcalendar/list'
 
 import {
-    getEvents as onGetEvents,
-    getCategories as onGetCategories,
     addNewEvent as onAddNewEvent,
     deleteEvent as onDeleteEvent,
+    getCategories as onGetCategories,
+    getEvents as onGetEvents,
     updateEvent as onUpdateEvent,
     resetCalendar
 } from '../../store/actions'

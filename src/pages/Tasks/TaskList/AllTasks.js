@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react'
-import TableContainer from '../../../components/Common/TableContainer'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import DeleteModal from '../../../components/Common/DeleteModal'
+import TableContainer from '../../../components/Common/TableContainer'
 
 // Import Scroll Bar - SimpleBar
 import SimpleBar from 'simplebar-react'
@@ -9,18 +9,18 @@ import SimpleBar from 'simplebar-react'
 import Flatpickr from 'react-flatpickr'
 
 //redux
-import { useSelector, useDispatch } from 'react-redux'
-import { Col, Modal, ModalBody, Row, Label, Input, Button, ModalHeader, FormFeedback, Form } from 'reactstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { Button, Col, Form, FormFeedback, Input, Label, Modal, ModalBody, ModalHeader, Row } from 'reactstrap'
 
-import { getTaskList, addNewTask, updateTask, deleteTask } from '../../../store/actions'
+import { addNewTask, deleteTask, getTaskList, updateTask } from '../../../store/actions'
 
-import { OrdersId, Project, CreateBy, DueDate, Status, Priority } from './TaskListCol'
+import { CreateBy, DueDate, OrdersId, Priority, Project, Status } from './TaskListCol'
 
 // Formik
-import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { isEmpty } from 'lodash'
 import { Link } from 'react-router-dom'
+import * as Yup from 'yup'
 
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'

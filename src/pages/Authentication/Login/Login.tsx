@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom'
-import { Card, CardBody, Col, Container, Input, Label, Row, Button, Form, FormFeedback, Alert, Spinner } from 'reactstrap'
+import { Button, Card, Col, Container, FormFeedback, Input, Label, Row, Spinner } from 'reactstrap'
 
-import AuthSlider from '../authCarousel'
-import { FOOTER_DESCRIPTION } from '../../../constants'
 import i18n from '../../../i18n'
+import AuthSlider from '../authCarousel'
 
-import * as Yup from 'yup'
 import { useFormik } from 'formik'
-import { useSelector, useDispatch } from 'react-redux'
-import { loginUser, socialLogin, resetLoginFlag } from '../../../store/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import * as Yup from 'yup'
+import { loginUser, resetLoginFlag } from '../../../store/actions'
 import AuthFooter from '../authFooter'
 
 type LoginState = {

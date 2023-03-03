@@ -1,5 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import Flatpickr from 'react-flatpickr'
+import Select from 'react-select'
 import {
+    Button,
     Card,
     CardBody,
     CardHeader,
@@ -7,27 +10,24 @@ import {
     Container,
     Form,
     Input,
-    Nav,
-    NavItem,
-    Row,
-    UncontrolledTooltip,
+    Label,
     Modal,
     ModalBody,
-    Label,
-    Button,
-    NavLink
+    Nav,
+    NavItem,
+    NavLink,
+    Row,
+    UncontrolledTooltip
 } from 'reactstrap'
-import Select from 'react-select'
-import Flatpickr from 'react-flatpickr'
 import DeleteModal from '../../../components/Common/DeleteModal'
 
-import BreadCrumb from '../../../components/Common/BreadCrumb'
-import { useSelector, useDispatch } from 'react-redux'
-import { getApplicationList } from '../../../store/actions'
-import TableContainer from '../../../components/Common/TableContainer'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { AppId, Name, Designation, Contact, Status, Type } from './ApplicationCol'
 import MultiUser from '../../../assets/images/users/multi-user.jpg'
+import BreadCrumb from '../../../components/Common/BreadCrumb'
+import TableContainer from '../../../components/Common/TableContainer'
+import { getApplicationList } from '../../../store/actions'
+import { AppId, Contact, Designation, Status, Type } from './ApplicationCol'
 const Application = () => {
     document.title = 'Application | Velzon - React Admin & Dashboard Template'
 

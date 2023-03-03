@@ -1,29 +1,29 @@
 import React, { useState } from 'react'
-import BreadCrumb from '../../../components/Common/BreadCrumb'
 import {
     Card,
     CardBody,
+    CardHeader,
     Col,
     Container,
-    CardHeader,
+    Form,
+    FormFeedback,
+    Input,
+    Label,
     Nav,
     NavItem,
     NavLink,
     Row,
     TabContent,
-    TabPane,
-    Input,
-    Label,
-    FormFeedback,
-    Form
+    TabPane
 } from 'reactstrap'
+import BreadCrumb from '../../../components/Common/BreadCrumb'
 
 // Redux
 import { useDispatch } from 'react-redux'
-import { addNewProduct as onAddNewProduct, updateProduct as onUpdateProduct } from '../../../store/ecommerce/action'
+import { addNewProduct as onAddNewProduct } from '../../../store/ecommerce/action'
 
-import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
 import classnames from 'classnames'
 import Dropzone from 'react-dropzone'
 import { Link, useNavigate } from 'react-router-dom'
@@ -37,10 +37,10 @@ import { registerPlugin } from 'react-filepond'
 import Flatpickr from 'react-flatpickr'
 import Select from 'react-select'
 // Import FilePond styles
-import 'filepond/dist/filepond.min.css'
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
+import 'filepond/dist/filepond.min.css'
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)

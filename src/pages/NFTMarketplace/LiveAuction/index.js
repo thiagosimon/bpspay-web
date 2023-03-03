@@ -1,23 +1,10 @@
 import React, { useState } from 'react'
-import { Card, CardBody, CardHeader, Col, Container, Row } from 'reactstrap'
 import Countdown from 'react-countdown'
-import BreadCrumb from '../../../components/Common/BreadCrumb'
 import { Link } from 'react-router-dom'
+import { Card, CardBody, CardHeader, Col, Container, Row } from 'reactstrap'
+import BreadCrumb from '../../../components/Common/BreadCrumb'
 
 // Import Images
-import Img2 from '../../../assets/images/nft/img-02.jpg'
-import Img3 from '../../../assets/images/nft/img-03.jpg'
-import Img4 from '../../../assets/images/nft/img-04.jpg'
-import Img5 from '../../../assets/images/nft/img-05.jpg'
-
-import ImgGif3 from '../../../assets/images/nft/gif/img-3.gif'
-import ImgGif4 from '../../../assets/images/nft/gif/img-4.gif'
-
-import avatar1 from '../../../assets/images/users/avatar-1.jpg'
-import avatar3 from '../../../assets/images/users/avatar-3.jpg'
-import avatar5 from '../../../assets/images/users/avatar-5.jpg'
-import avatar8 from '../../../assets/images/users/avatar-8.jpg'
-import avatar10 from '../../../assets/images/users/avatar-10.jpg'
 
 import { aution, topCreator, topDrop } from '../../../common/data'
 
