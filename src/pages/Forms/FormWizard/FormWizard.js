@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { Card, CardBody, CardHeader, Col, Container, Form, Input, Label, Nav, NavItem, NavLink, Row, TabContent, TabPane, Progress } from 'reactstrap'
+import { Card, CardBody, CardHeader, Col, Container, Form, Input, Label, Nav, NavItem, NavLink, Progress, Row, TabContent, TabPane } from 'reactstrap'
 //Import images
-import dummyUser from '../../../assets/images/users/user-dummy-img.jpg'
 import logoDark from '../../../assets/images/logo-dark.png'
+import dummyUser from '../../../assets/images/users/user-dummy-img.jpg'
 
 import classnames from 'classnames'
-import BreadCrumb from '../../../components/Common/BreadCrumb'
-import { loadAnimation } from 'lottie-web'
 import { defineLordIconElement } from 'lord-icon-element'
+import { loadAnimation } from 'lottie-web'
+import BreadCrumb from '../../../components/Common/BreadCrumb'
 // register lottie and define custom element
 defineLordIconElement(loadAnimation)
 

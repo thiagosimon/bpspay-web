@@ -17,5 +17,6 @@ export const buttons = {
     signIn: 'Entrar',
     update: 'Atualizar',
     loading: 'Carregando',
-    register: 'Cadastrar'
+    register: 'Cadastrar',
+    sendUpdate: 'Enviar alteração'
 }
