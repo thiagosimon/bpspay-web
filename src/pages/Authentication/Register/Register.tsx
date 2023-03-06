@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 
 import { Link, useNavigate } from 'react-router-dom'
-import { Card, CardBody, Col, Container, Input, Label, Row, Button, Form, FormFeedback, Alert, Spinner } from 'reactstrap'
+import { Button, Card, Col, Container, FormFeedback, Input, Label, Row, Spinner } from 'reactstrap'
 
-import AuthFooter from '../authFooter'
-import AuthSlider from '../authCarousel'
+import AuthSlider from '../Components/AuthCarousel'
+import AuthFooter from '../Components/AuthFooter'
 
 import i18n from '../../../i18n'
 
-import * as Yup from 'yup'
 import { useFormik } from 'formik'
-import { useSelector, useDispatch } from 'react-redux'
-import { registerUser, apiError, resetRegisterFlag } from '../../../store/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import * as Yup from 'yup'
+import { apiError, registerUser, resetRegisterFlag } from '../../../store/actions'
 
 type Registertate = {
     Account: {
@@ -45,13 +45,9 @@ const Register = () => {
             password: ''
         },
         validationSchema: Yup.object({
-            email: Yup.string().required('Please Enter Your Email'),
-            first_name: Yup.string().required('Please Enter Your Username'),
-            password: Yup.string().required('Please Enter Your Password'),
-            confirm_password: Yup.string().when('password', {
-                is: (val: string) => (val && val.length > 0 ? true : false),
-                then: Yup.string().oneOf([Yup.ref('password')], "Confirm Password Isn't Match")
-            })
+            email: Yup.string().required(i18n.t('validations.emailRequired')),
+            name: Yup.string().required(i18n.t('validations.nameRequired')),
+            password: Yup.string().required(i18n.t('validations.passwordRequired'))
         }),
         onSubmit: values => {
             dispatch(registerUser(values))
@@ -132,31 +128,31 @@ const Register = () => {
                                                             ) : null}
                                                         </div>
 
-                                                        <div className="mb-3">
-                                                            <Label className="form-label" htmlFor="password-input">
+                                                        <div className="position-relative auth-pass-inputgroup mb-3">
+                                                            <Label htmlFor="password" className="form-label">
                                                                 {i18n.t<string>('labels.password')} <span className="text-danger">*</span>
                                                             </Label>
-                                                            <div className="position-relative auth-pass-inputgroup mb-3">
-                                                                <Input
-                                                                    name="password"
-                                                                    value={validation.values.password || ''}
-                                                                    type={passwordShow ? 'text' : 'password'}
-                                                                    className="form-control pe-5 password-input"
-                                                                    onChange={validation.handleChange}
-                                                                    onBlur={validation.handleBlur}
-                                                                    invalid={validation.touched.password && validation.errors.password ? true : false}
-                                                                    placeholder={i18n.t<string>('placeholder.enterPassword')}
-                                                                    id="password-input"
-                                                                />
-                                                                <button
-                                                                    className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                                                    type="button"
-                                                                    id="password-addon"
-                                                                    onClick={() => setPasswordShow(!passwordShow)}
-                                                                >
-                                                                    <i className="ri-eye-fill align-middle"></i>
-                                                                </button>
-                                                            </div>
+                                                            <Input
+                                                                name="password"
+                                                                className="form-control"
+                                                                placeholder={i18n.t<string>('placeholder.enterPassword')}
+                                                                type="password"
+                                                                onChange={validation.handleChange}
+                                                                onBlur={validation.handleBlur}
+                                                                value={validation.values.password || ''}
+                                                                invalid={validation.touched.password && validation.errors.password ? true : false}
+                                                            />
+                                                            <button
+                                                                className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                                                                type="button"
+                                                                id="password-addon"
+                                                                onClick={() => setPasswordShow(!passwordShow)}
+                                                            >
+                                                                {!validation.errors.password && <i className="ri-eye-fill align-middle" />}
+                                                            </button>
+                                                            {validation.touched.password && validation.errors.password ? (
+                                                                <FormFeedback type="invalid">{validation.errors.password}</FormFeedback>
+                                                            ) : null}
                                                         </div>
 
                                                         <div className="mb-4">

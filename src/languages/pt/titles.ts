@@ -1,4 +1,6 @@
 export const titles = {
     welcome: 'Bem vindo!',
-    registerAccount: 'Crie sua conta'
+    registerAccount: 'Crie sua conta',
+    registrationDone: 'Cadastro realizado!',
+    resetPassword: 'Criar nova Senha'
 }
