@@ -6,7 +6,7 @@ import DashboardAnalytics from '../pages/DashboardAnalytics'
 import DashboardCrm from '../pages/DashboardCrm'
 import DashboardCrypto from '../pages/DashboardCrypto'
 import DashboardEcommerce from '../pages/DashboardEcommerce'
-import DashboardJob from '../pages/DashboardJob/'
+import DashboardJob from '../pages/DashboardJob'
 import DashboardNFT from '../pages/DashboardNFT'
 import DashboardProject from '../pages/DashboardProject'
 

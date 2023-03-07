@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import {
     Button,
     Card,
@@ -18,14 +18,13 @@ import {
     Row,
     UncontrolledDropdown
 } from 'reactstrap'
-import DeleteModal from '../../components/Common/DeleteModal'
 import BreadCrumb from '../../components/Common/BreadCrumb'
-import Widgets from './Widgets'
+import DeleteModal from '../../components/Common/DeleteModal'
 import TableContainer from '../../components/Common/TableContainer'
-import { APIKeys, CreatedBy, ExpiryDate, Name, Status } from './APIKeyCol'
-import { CreateDate } from '../SupportTickets/ListView/TicketCol'
-import { useDispatch, useSelector } from 'react-redux'
 import { getAPIKey } from '../../store/actions'
+import { CreateDate } from '../SupportTickets/ListView/TicketCol'
+import { APIKeys, CreatedBy, ExpiryDate, Name, Status } from './APIKeyCol'
+import Widgets from './Widgets'
 
 const APIKey = () => {
     document.title = 'API Key | Velzon -  Admin & Dashboard Template'

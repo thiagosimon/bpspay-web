@@ -1,21 +1,21 @@
-import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { useTable, useGlobalFilter, useAsyncDebounce, useSortBy, useFilters, useExpanded, usePagination, useRowSelect } from 'react-table'
-import { Table, Row, Col, Button, Input, CardBody } from 'reactstrap'
-import { Filter, DefaultColumnFilter } from './filters'
+import React, { Fragment } from 'react'
+import { useAsyncDebounce, useExpanded, useFilters, useGlobalFilter, usePagination, useRowSelect, useSortBy, useTable } from 'react-table'
+import { Button, CardBody, Col, Input, Row, Table } from 'reactstrap'
 import {
-    ProductsGlobalFilter,
-    CustomersGlobalFilter,
-    OrderGlobalFilter,
-    ContactsGlobalFilter,
     CompaniesGlobalFilter,
-    LeadsGlobalFilter,
+    ContactsGlobalFilter,
     CryptoOrdersGlobalFilter,
+    CustomersGlobalFilter,
     InvoiceListGlobalSearch,
-    TicketsListGlobalFilter,
+    LeadsGlobalFilter,
     NFTRankingGlobalFilter,
-    TaskListGlobalFilter
+    OrderGlobalFilter,
+    ProductsGlobalFilter,
+    TaskListGlobalFilter,
+    TicketsListGlobalFilter
 } from '../../components/Common/GlobalSearchFilter'
+import { DefaultColumnFilter } from './filters'
 
 // Define a default UI for filtering
 function GlobalFilter({

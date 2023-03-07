@@ -66,7 +66,7 @@ const ResetPassword = () => {
                                                                     name="password"
                                                                     className="form-control"
                                                                     placeholder={i18n.t<string>('placeholder.enterPassword')}
-                                                                    type="password"
+                                                                    type={passwordShow ? 'text' : 'password'}
                                                                     onChange={validation.handleChange}
                                                                     onBlur={validation.handleBlur}
                                                                     value={validation.values.password || ''}
@@ -95,7 +95,7 @@ const ResetPassword = () => {
                                                                     name="confirmPassword"
                                                                     className="form-control"
                                                                     placeholder={i18n.t<string>('placeholder.confirmPassword')}
-                                                                    type="password"
+                                                                    type={confirmPasswordShow ? 'text' : 'password'}
                                                                     onChange={validation.handleChange}
                                                                     onBlur={validation.handleBlur}
                                                                     value={validation.values.confirmPassword || ''}
@@ -109,12 +109,12 @@ const ResetPassword = () => {
                                                                     className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                                                     type="button"
                                                                     id="password-addon"
-                                                                    onClick={() => setPasswordShow(!passwordShow)}
+                                                                    onClick={() => setConfirmPasswordShow(!confirmPasswordShow)}
                                                                 >
                                                                     {!validation.errors.confirmPassword && <i className="ri-eye-fill align-middle" />}
                                                                 </button>
                                                                 {validation.touched.confirmPassword && validation.errors.confirmPassword ? (
-                                                                    <FormFeedback type="invalid">{validation.errors.password}</FormFeedback>
+                                                                    <FormFeedback type="invalid">{validation.errors.confirmPassword}</FormFeedback>
                                                                 ) : null}
                                                             </div>
                                                         </div>

@@ -9,7 +9,8 @@ import AuthSlider from '../Components/AuthCarousel'
 import { useFormik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
-import { loginUser, resetLoginFlag } from '../../../store/actions'
+import { useLogin } from '../../../hooks/useLogin'
+import { resetLoginFlag } from '../../../store/actions'
 import AuthFooter from '../Components/AuthFooter'
 
 type LoginState = {
@@ -23,11 +24,11 @@ type LoginState = {
 
 const Login = () => {
     const dispatch = useDispatch()
+    const { submitLogin, loading } = useLogin()
 
-    const { user, errorMsg, loading, error } = useSelector((state: LoginState) => ({
+    const { user, errorMsg, error } = useSelector((state: LoginState) => ({
         user: state.Login.user,
         errorMsg: state.Login.errorMsg,
-        loading: state.Login.loading,
         error: state.Login.error
     }))
 
@@ -38,7 +39,7 @@ const Login = () => {
     const [passwordShow, setPasswordShow] = useState(false)
 
     const validation = useFormik({
-        enableReinitialize: true,
+        // enableReinitialize: true,
         initialValues: {
             email: userLogin.email || 'admin@bpspay.com.br' || '',
             password: userLogin.password || '12345678' || ''
@@ -48,18 +49,27 @@ const Login = () => {
             password: Yup.string().required(i18n.t('validations.passwordRequired'))
         }),
         onSubmit: values => {
-            dispatch(loginUser(values, '/dashboard'))
+            console.log('values', values)
+            // submitLogin(
+            //     {
+            //         email: values.email,
+            //         password: values.password
+            //     },
+            //     this
+            // )`
+            // dispatch(loginUser(values.email, values.password))
         }
     })
 
     useEffect(() => {
-        if (user && user) {
-            setUserLogin({
-                email: user.user.email,
-                password: user.user.password
-            })
-        }
-    }, [user])
+        submitLogin(
+            {
+                email: 'dev@grasp.com.br',
+                password: '12345678'
+            },
+            this
+        )
+    }, [])
 
     useEffect(() => {
         if (error) {
@@ -89,7 +99,7 @@ const Login = () => {
                                                 </div>
 
                                                 <div className="mt-4">
-                                                    <form action="/">
+                                                    <form>
                                                         <div className="mb-3">
                                                             <Label htmlFor="email" className="form-label">
                                                                 {i18n.t<string>('labels.email')}
@@ -123,7 +133,7 @@ const Login = () => {
                                                                     name="password"
                                                                     className="form-control"
                                                                     placeholder={i18n.t<string>('placeholder.enterPassword')}
-                                                                    type="password"
+                                                                    type={passwordShow ? 'text' : 'password'}
                                                                     onChange={validation.handleChange}
                                                                     onBlur={validation.handleBlur}
                                                                     value={validation.values.password || ''}
@@ -156,6 +166,7 @@ const Login = () => {
                                                                 disabled={error || loading}
                                                                 className="btn btn-primary w-100"
                                                                 type="submit"
+                                                                onClick={() => validation.submitForm()}
                                                             >
                                                                 {error ? null : loading ? (
                                                                     <Spinner size="sm" className="me-2">
