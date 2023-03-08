@@ -7,3 +7,8 @@ export const STORAGE_KEYS = {
     CORRELATION_ID: 'correlationId',
     IN_PROGRESS_PATROL: 'inProgressPatrol'
 }
+
+export const TERMS = {
+    TERMS_OF_USE: 'TERMS_OF_USE',
+    SERVICE_AGREEMENT: 'SERVICE_AGREEMENT'
+}

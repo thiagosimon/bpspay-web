@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import { Link } from 'react-router-dom'
 import { Button, Card, Col, Container, FormFeedback, Input, Label, Row, Spinner } from 'reactstrap'
 
 import i18n from '../../../i18n'
 import AuthSlider from '../Components/AuthCarousel'
 
 import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
 import { useLogin } from '../../../hooks/useLogin'
-import { resetLoginFlag } from '../../../store/actions'
 import AuthFooter from '../Components/AuthFooter'
 
 type LoginState = {
@@ -23,9 +22,7 @@ type LoginState = {
 }
 
 const Login = () => {
-    const dispatch = useDispatch()
     const { submitLogin, loading } = useLogin()
-
     const { user, errorMsg, error } = useSelector((state: LoginState) => ({
         user: state.Login.user,
         errorMsg: state.Login.errorMsg,
@@ -39,7 +36,7 @@ const Login = () => {
     const [passwordShow, setPasswordShow] = useState(false)
 
     const validation = useFormik({
-        // enableReinitialize: true,
+        enableReinitialize: true,
         initialValues: {
             email: userLogin.email || 'admin@bpspay.com.br' || '',
             password: userLogin.password || '12345678' || ''
@@ -48,36 +45,16 @@ const Login = () => {
             email: Yup.string().required(i18n.t('validations.emailRequired')),
             password: Yup.string().required(i18n.t('validations.passwordRequired'))
         }),
-        onSubmit: values => {
-            console.log('values', values)
-            // submitLogin(
-            //     {
-            //         email: values.email,
-            //         password: values.password
-            //     },
-            //     this
-            // )`
-            // dispatch(loginUser(values.email, values.password))
+        onSubmit: async values => {
+            await submitLogin(
+                {
+                    email: values.email,
+                    password: values.password
+                },
+                this
+            )
         }
     })
-
-    useEffect(() => {
-        submitLogin(
-            {
-                email: 'dev@grasp.com.br',
-                password: '12345678'
-            },
-            this
-        )
-    }, [])
-
-    useEffect(() => {
-        if (error) {
-            setTimeout(() => {
-                dispatch(resetLoginFlag())
-            }, 3000)
-        }
-    }, [dispatch, error])
 
     return (
         <React.Fragment>
@@ -170,8 +147,7 @@ const Login = () => {
                                                             >
                                                                 {error ? null : loading ? (
                                                                     <Spinner size="sm" className="me-2">
-                                                                        {' '}
-                                                                        {i18n.t<string>('buttons.loading')}...{' '}
+                                                                        {loading && i18n.t<string>('buttons.loading')}...
                                                                     </Spinner>
                                                                 ) : null}
                                                                 {i18n.t<string>('buttons.signIn')}

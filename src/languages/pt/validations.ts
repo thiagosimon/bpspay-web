@@ -7,5 +7,7 @@ export const validations = {
     confirmPasswordRequired: 'A confirmação de senha é obrigatória',
     confirmPasswordInvalid: 'A confirmação de senha é inválida',
     passwordNotMatch: 'A senha e a confirmação de senha não conferem',
-    passwordLength: 'A senha deve ter no mínimo 8 caracteres'
+    passwordLength: 'A senha deve ter no mínimo 8 caracteres',
+    nameLength: 'O nome deve ter no mínimo 3 caracteres',
+    registerFullName: 'O nome completo é obrigatório'
 }

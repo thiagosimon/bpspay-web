@@ -1,4 +1,5 @@
-const domain = 'https://api-gateway-shield.herokuapp.com'
+// const domain = 'https://api-gateway-shield.herokuapp.com',
+const domain = 'http://localhost:3000'
 const viaCepDomain = 'https://viacep.com.br/ws/'
 
 export default {

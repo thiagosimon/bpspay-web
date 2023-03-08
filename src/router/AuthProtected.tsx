@@ -1,11 +1,6 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
 import { Navigate, NavigateFunction, Route, RouteProps } from 'react-router-dom'
-import { useProfile } from '../components/Hooks/UserHooks'
-import { setAuthorization } from '../helpers/api_helper'
-
-import { logoutUser } from '../store/actions'
-
+import { useProfile } from '../hooks/useProfile'
 type AccessRouteProps = {
     component: React.ComponentType<any>
 } & RouteProps
@@ -18,18 +13,27 @@ type NavigateTo = {
 }
 
 const AuthProtected = (
-    props: RouteProps & { children?: React.ReactNode; location?: { state?: { from: string }; pathname: string } },
+    props: RouteProps & {
+        children?: React.ReactNode
+        location?: { state?: { from: string }; pathname: string }
+    },
     navigate?: NavigateFunction
 ) => {
-    const dispatch = useDispatch()
     const { userProfile, loading, token } = useProfile()
+    const [shouldNavigateToLogin, setShouldNavigateToLogin] = useState(false)
+
     useEffect(() => {
         if (userProfile && !loading && token) {
-            setAuthorization(token)
+            localStorage.setItem('token', token)
         } else if (!userProfile && loading && !token) {
-            dispatch(logoutUser())
+            localStorage.removeItem('token')
+            setShouldNavigateToLogin(true)
         }
-    }, [token, userProfile, loading, dispatch])
+    }, [token, userProfile, loading])
+
+    if (shouldNavigateToLogin) {
+        return <Navigate to={{ pathname: '/login', state: { from: props.location?.pathname || '/' } } as NavigateTo} />
+    }
 
     if (!userProfile && loading && !token) {
         return <Navigate to={{ pathname: '/login', state: { from: props.location?.pathname || '/' } } as NavigateTo} />
@@ -42,4 +46,4 @@ const AccessRoute = ({ component: Component, ...rest }: AccessRouteProps) => {
     return <Route {...rest} element={<Component />} />
 }
 
-export { AuthProtected, AccessRoute }
+export { AccessRoute, AuthProtected }

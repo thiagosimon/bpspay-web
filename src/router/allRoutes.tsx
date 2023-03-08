@@ -187,7 +187,7 @@ import CoverPasswCreate from '../pages/AuthenticationInner/PasswordCreate/CoverP
 //login
 // import Login from "../pages/Authentication/Login";
 import Login from '../pages/Authentication/Login/Login'
-import Logout from '../pages/Authentication/Logout'
+import Logout from '../pages/Authentication/Logout/Logout'
 import Register from '../pages/Authentication/Register/Register'
 import ResetPassword from '../pages/Authentication/ResetPassword/ResetPassword'
 
