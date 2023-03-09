@@ -18,5 +18,6 @@ export const buttons = {
     update: 'Atualizar',
     loading: 'Carregando',
     register: 'Cadastrar',
-    sendUpdate: 'Enviar alteração'
+    sendUpdate: 'Enviar alteração',
+    backToHome: 'Voltar para home'
 }
