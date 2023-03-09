@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button, Card, Col, Container, FormFeedback, Input, Label, Row, Spinner } from 'reactstrap'
 
 import AuthSlider from '../Components/AuthCarousel'
@@ -9,37 +9,23 @@ import AuthFooter from '../Components/AuthFooter'
 import i18n from '../../../i18n'
 
 import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
-import { apiError, registerUser, resetRegisterFlag } from '../../../store/actions'
 
 import GenericModal from '../../../components/Common/GenericModal/GenericModal'
+import useRegisterUser from '../../../hooks/useRegisterUser'
 import useTerms from '../../../hooks/useTerms'
-type Registertate = {
-    Account: {
-        registrationError: any
-        loading: boolean
-        success: any
-        error: any
-    }
-}
+import useValidateContact from '../../../hooks/useValidateContact'
+import { USER_TYPE } from '../../../utils/Constant'
+import { splitFullName } from '../../../utils/Helper'
 
-const Register = () => {
-    const history = useNavigate()
-    const dispatch = useDispatch()
+const RegisterUser = () => {
+    const { submitRegister, loading } = useRegisterUser()
+    const { termsOfUse } = useTerms()
+    const { emailAlreadyExist } = useValidateContact()
 
-    const { registrationError, loading, success, error } = useSelector((state: Registertate) => ({
-        registrationError: state.Account.registrationError,
-        loading: state.Account.loading,
-        success: state.Account.success,
-        error: state.Account.error
-    }))
-
-    const { termsOfUse, loadingTerms } = useTerms()
-
-    const [passwordShow, setPasswordShow] = useState(false)
-
-    const [showModal, setShowModal] = useState(Boolean(false))
+    const [passwordShow, setPasswordShow] = useState<boolean>(false)
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [acceptTerms, setAcceptTerms] = useState<boolean>(false)
 
     const validation = useFormik({
         enableReinitialize: true,
@@ -49,30 +35,49 @@ const Register = () => {
             password: ''
         },
         validationSchema: Yup.object({
-            email: Yup.string().required(i18n.t('validations.emailRequired')),
+            email: Yup.string()
+                .required(i18n.t('validations.emailRequired'))
+                .email(i18n.t('validations.emailInvalid'))
+                .min(5, i18n.t('validations.emailLength'))
+                .max(100, i18n.t('validations.emailLength'))
+                .test('emailInUse', i18n.t('validations.emailInUse'), async value => {
+                    if (value && value.length > 5) {
+                        const emailExists = await emailAlreadyExist(value, this)
+                        console.log('emailExists', emailExists)
+
+                        return emailExists ? false : true
+                    }
+
+                    return false
+                }),
             name: Yup.string()
                 .required(i18n.t('validations.nameRequired'))
                 .matches(/^[a-zA-Z]+ [a-zA-Z]+$/, i18n.t('validations.registerFullName')),
             password: Yup.string().required(i18n.t('validations.passwordRequired')).min(8, i18n.t('validations.passwordLength'))
         }),
-        onSubmit: values => {
-            dispatch(registerUser(values))
+        onSubmit: async values => {
+            const fullName = await splitFullName(values.name)
+
+            await submitRegister(
+                {
+                    email: values.email,
+                    firstName: fullName.firstName,
+                    lastName: fullName.lastName,
+                    fullName: values.name,
+                    password: values.password,
+                    companyUser: {
+                        subtype: USER_TYPE.ADMIN
+                    }
+                },
+                this
+            )
         }
     })
 
-    useEffect(() => {
-        dispatch(apiError(''))
-    }, [dispatch])
-
-    useEffect(() => {
-        if (success) {
-            setTimeout(() => history('/login'), 3000)
-        }
-
-        setTimeout(() => {
-            dispatch(resetRegisterFlag())
-        }, 3000)
-    }, [dispatch, success, error, history])
+    const onHandleSubmitTerms = (value: boolean) => {
+        setAcceptTerms(value)
+        setShowModal(false)
+    }
 
     return (
         <React.Fragment>
@@ -94,7 +99,7 @@ const Register = () => {
                                                 </div>
 
                                                 <div className="mt-4">
-                                                    <form action="/">
+                                                    <form>
                                                         <div className="mb-3">
                                                             <Label htmlFor="email" className="form-label">
                                                                 {i18n.t<string>('labels.email')} <span className="text-danger">*</span>
@@ -174,17 +179,19 @@ const Register = () => {
 
                                                         <div className="mt-4">
                                                             <Button
+                                                                disabled={loading || !acceptTerms || !validation.isValid}
                                                                 color="primary"
-                                                                disabled={error || loading}
                                                                 className="btn btn-primary w-100"
                                                                 type="submit"
+                                                                onClick={() => validation.submitForm()}
                                                             >
-                                                                {error ? null : loading ? (
+                                                                {loading ? (
                                                                     <Spinner size="sm" className="me-2">
-                                                                        {' '}
-                                                                        {i18n.t<string>('buttons.loading')}...{' '}
+                                                                        {i18n.t<string>('buttons.loading')}...
                                                                     </Spinner>
-                                                                ) : null}
+                                                                ) : (
+                                                                    <></>
+                                                                )}
                                                                 {i18n.t<string>('buttons.register')}
                                                             </Button>
                                                         </div>
@@ -213,12 +220,13 @@ const Register = () => {
                     show={showModal}
                     title={i18n.t('titles.termsOfUse')}
                     description={termsOfUse}
+                    acceptTerms={acceptTerms}
                     onCloseClick={() => setShowModal(false)}
-                    onAcceptClick={() => setShowModal(false)}
+                    onAcceptClick={() => onHandleSubmitTerms(!acceptTerms)}
                 />
             </div>
         </React.Fragment>
     )
 }
 
-export default Register
+export default RegisterUser

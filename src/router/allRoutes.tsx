@@ -187,7 +187,7 @@ import CoverPasswCreate from '../pages/AuthenticationInner/PasswordCreate/CoverP
 // import Login from "../pages/Authentication/Login";
 import Login from '../pages/Authentication/Login/Login'
 import Logout from '../pages/Authentication/Logout/Logout'
-import Register from '../pages/Authentication/Register/Register'
+import RegisterUser from '../pages/Authentication/RegisterUser/RegisterUser'
 import ResetPassword from '../pages/Authentication/ResetPassword/ResetPassword'
 
 //Charts
@@ -236,6 +236,7 @@ import UserProfile from '../pages/Authentication/user-profile'
 import FileManager from '../pages/FileManager'
 import ToDoList from '../pages/ToDo'
 
+import CheckRegistrationEmail from '../pages/Authentication/CheckRegistrationEmail/CheckRegistrationEmail'
 import PageNotFound from '../pages/Authentication/Errors/PageNotFound'
 import JobLanding from '../pages/Job_Landing/Job'
 import PrivecyPolicy from '../pages/Pages/PrivacyPolicy'
@@ -455,8 +456,9 @@ const publicRoutes = [
     { path: '/logout', component: <Logout /> },
     { path: '/login', component: <Login /> },
     { path: '/reset-password', component: <ResetPassword /> },
-    { path: '/register', component: <Register /> },
+    { path: '/register', component: <RegisterUser /> },
     { path: '/auth-404', component: <PageNotFound /> },
+    { path: '/check-registration-email', component: <CheckRegistrationEmail /> },
 
     //AuthenticationInner pages
     { path: '/auth-signin-basic', component: <BasicSignIn /> },

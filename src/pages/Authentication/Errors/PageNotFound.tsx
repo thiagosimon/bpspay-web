@@ -6,7 +6,7 @@ import i18n from '../../../i18n'
 const oopsImage = require('../../../assets/images/404.png')
 
 const PageNotFound = () => {
-    document.title = '404 Error Alt | Velzon - React Admin & Dashboard Template'
+    document.title = 'Error 404 | Page Not Found'
 
     return (
         <React.Fragment>

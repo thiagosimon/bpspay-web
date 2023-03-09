@@ -17,7 +17,7 @@ const DescriptionComponent = ({ text }: Props) => {
     return <div dangerouslySetInnerHTML={{ __html: formattedDescription }} />
 }
 
-const GenericModal = ({ show, title, description, onCloseClick, onAcceptClick }: GenericModalProps) => {
+const GenericModal = ({ show, title, description, acceptTerms, onCloseClick, onAcceptClick }: GenericModalProps) => {
     return (
         <Modal isOpen={show} centered scrollable className="custom-modal" size="xl">
             <ModalHeader toggle={onCloseClick} className="custom-header modal-title" tag="h5">
@@ -28,7 +28,7 @@ const GenericModal = ({ show, title, description, onCloseClick, onAcceptClick }:
             </ModalBody>
             <ModalFooter className="justify-content-center">
                 <div className="form-check" onClick={onAcceptClick}>
-                    <Input className="form-check-input" type="checkbox" value="" id="agreement-check" />
+                    <Input className="form-check-input" type="checkbox" id="agreement-check" checked={acceptTerms} />
                     <p agreement-check className="form-check-label accept-label">
                         {i18n.t<string>('descriptions.checkEmailRegistrationProblem')}
                     </p>
