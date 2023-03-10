@@ -6,8 +6,7 @@ import i18n from '../../../i18n'
 const oopsImage = require('../../../assets/images/404.png')
 
 const PageNotFound = () => {
-    document.title = 'Error 404 | Page Not Found'
-
+    document.title = `Page Not Found | ${i18n.t<string>('titles.brandName')}`
     return (
         <React.Fragment>
             <div className="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">

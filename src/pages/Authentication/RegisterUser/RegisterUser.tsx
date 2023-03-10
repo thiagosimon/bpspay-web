@@ -17,7 +17,7 @@ import useTerms from '../../../hooks/useTerms'
 import useValidateContact from '../../../hooks/useValidateContact'
 import { USER_TYPE } from '../../../utils/Constant'
 import { splitFullName } from '../../../utils/Helper'
-6
+
 const RegisterUser = () => {
     const { submitRegister, loading } = useRegisterUser()
     const { termsOfUse } = useTerms()
@@ -25,14 +25,14 @@ const RegisterUser = () => {
 
     const [passwordShow, setPasswordShow] = useState<boolean>(false)
     const [showModal, setShowModal] = useState<boolean>(false)
-    const [acceptTerms, setAcceptTerms] = useState<boolean>(true)
+    const [acceptTerms, setAcceptTerms] = useState<boolean>(false)
 
     const validation = useFormik({
         enableReinitialize: false,
         initialValues: {
-            email: 'test4@gmail.com',
-            name: 'test test',
-            password: '12345678'
+            email: '',
+            name: '',
+            password: ''
         },
         validationSchema: Yup.object({
             email: Yup.string()
@@ -103,7 +103,7 @@ const RegisterUser = () => {
                                                             <Input
                                                                 name="email"
                                                                 className="form-control"
-                                                                placeholder="Enter email"
+                                                                placeholder={i18n.t<string>('placeholder.enterEmail')}
                                                                 type="email"
                                                                 onChange={validation.handleChange}
                                                                 onBlur={validation.handleBlur}

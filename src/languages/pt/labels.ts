@@ -9,5 +9,8 @@ export const labels = {
     hasAccount: 'Já tem uma conta?',
     readAndAcceptTermsRequired: 'Para realizar seu cadatro você precisa ler e aceitar os ',
     TermsOfUse: 'Termos de Uso',
-    IRememberMyPassword: 'Espere, eu lembrei minha senha!'
+    IRememberMyPassword: 'Espere, eu lembrei minha senha!',
+    document: 'CNPJ',
+    socialName: 'Razão Social',
+    responsableFederalTaxId: 'CPF do responsável'
 }

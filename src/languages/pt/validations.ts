@@ -13,5 +13,15 @@ export const validations = {
     aceptTerms: 'Você deve aceitar os termos de uso da plataforma',
     emailMinLength: 'O e-mail deve ter no mínimo 5 caracteres',
     emailMaxLength: 'O e-mail deve ter no máximo 100 caracteres',
-    emailAlreadyExist: 'O e-mail já está cadastrado'
+    emailAlreadyExist: 'O e-mail já está cadastrado',
+    documentRequired: 'O CNPJ é obrigatório',
+    documentInvalid: 'O CNPJ é inválido',
+    documentLength: 'O CNPJ deve ter 18 caracteres',
+    socialNameRequired: 'A razão social é obrigatória',
+    socialNameMinLength: 'A razão social deve ter no mínimo 3 caracteres',
+    socialNameMaxLength: 'A razão social deve ter no máximo 100 caracteres',
+    responsableFederalTaxIdRequired: 'O CPF do responsável é obrigatório',
+    responsableFederalTaxIdInvalid: 'O CPF do responsável é inválido',
+    responsableFederalTaxIdLength: 'O CPF do responsável deve ter 11 caracteres',
+    documentAlreadyExist: 'O CNPJ já está cadastrado'
 }

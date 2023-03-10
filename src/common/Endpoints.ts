@@ -30,7 +30,8 @@ export default {
         company: `${domain}/api/company/v1/`,
         formData: `${domain}/api/company/formdata/v1/`,
         filter: `${domain}/api/company/filter/v1/`,
-        delete: `${domain}/api/company/delete/v1/`
+        delete: `${domain}/api/company/delete/v1/`,
+        checkDocumentExist: `${domain}/api/company/check/document/v1/`
     },
     logs: {
         filter: `${domain}/api/logs/filter/v1/`

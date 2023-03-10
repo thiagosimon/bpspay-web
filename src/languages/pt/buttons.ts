@@ -20,5 +20,7 @@ export const buttons = {
     register: 'Cadastrar',
     sendUpdate: 'Enviar alteração',
     backToHome: 'Voltar para home',
-    goToLogin: 'Ir para login'
+    goToLogin: 'Ir para login',
+    enter: 'Entrar',
+    sendRegister: 'Enviar cadastro'
 }

@@ -239,6 +239,7 @@ import ToDoList from '../pages/ToDo'
 import CheckRegistrationEmail from '../pages/Authentication/CheckRegistrationEmail/CheckRegistrationEmail'
 import ConfirmedRegistration from '../pages/Authentication/ConfirmedUserRegistration/ConfirmedUserRegistration'
 import PageNotFound from '../pages/Authentication/Errors/PageNotFound'
+import RegisterCompany from '../pages/Authentication/RegisterCompany/RegisterCompany'
 import JobLanding from '../pages/Job_Landing/Job'
 import PrivecyPolicy from '../pages/Pages/PrivacyPolicy'
 import TermsCondition from '../pages/Pages/TermsCondition'
@@ -458,6 +459,7 @@ const publicRoutes = [
     { path: '/login', component: <Login /> },
     { path: '/reset-password', component: <ResetPassword /> },
     { path: '/register', component: <RegisterUser /> },
+    { path: '/register-company', component: <RegisterCompany /> },
     { path: '/auth-404', component: <PageNotFound /> },
     { path: '/check-registration-email', component: <CheckRegistrationEmail /> },
     { path: '/confirmed-user-registration', component: <ConfirmedRegistration /> },

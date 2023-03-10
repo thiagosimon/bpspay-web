@@ -42,7 +42,7 @@ export const useLogin = () => {
                 setLoading(false)
 
                 navigate('/dashboard')
-                setDarkMode()
+                // setDarkMode()
             }
         } catch (error) {
             setLoading(false)

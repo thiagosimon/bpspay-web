@@ -16,3 +16,13 @@ export const TERMS = {
 export const USER_TYPE = {
     ADMIN: 'ADMIN'
 }
+
+export const COMPANY_TYPE = {
+    CLIENT: 'CLIENT'
+}
+
+export const COMPANY_STATUS = {
+    ACTIVE: 'ACTIVE',
+    ARCHEIVED: 'ARCHEIVED',
+    PENDING_ACCEPT_TERMS: 'PENDING_ACCEPT_TERMS'
+}
