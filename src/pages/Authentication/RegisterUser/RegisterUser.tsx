@@ -17,7 +17,7 @@ import useTerms from '../../../hooks/useTerms'
 import useValidateContact from '../../../hooks/useValidateContact'
 import { USER_TYPE } from '../../../utils/Constant'
 import { splitFullName } from '../../../utils/Helper'
-
+6
 const RegisterUser = () => {
     const { submitRegister, loading } = useRegisterUser()
     const { termsOfUse } = useTerms()
@@ -25,52 +25,48 @@ const RegisterUser = () => {
 
     const [passwordShow, setPasswordShow] = useState<boolean>(false)
     const [showModal, setShowModal] = useState<boolean>(false)
-    const [acceptTerms, setAcceptTerms] = useState<boolean>(false)
+    const [acceptTerms, setAcceptTerms] = useState<boolean>(true)
 
     const validation = useFormik({
-        enableReinitialize: true,
+        enableReinitialize: false,
         initialValues: {
-            email: '',
-            name: '',
-            password: ''
+            email: 'test4@gmail.com',
+            name: 'test test',
+            password: '12345678'
         },
         validationSchema: Yup.object({
             email: Yup.string()
                 .required(i18n.t('validations.emailRequired'))
                 .email(i18n.t('validations.emailInvalid'))
                 .min(5, i18n.t('validations.emailLength'))
-                .max(100, i18n.t('validations.emailLength'))
-                .test('emailInUse', i18n.t('validations.emailInUse'), async value => {
-                    if (value && value.length > 5) {
-                        const emailExists = await emailAlreadyExist(value, this)
-                        console.log('emailExists', emailExists)
-
-                        return emailExists ? false : true
-                    }
-
-                    return false
-                }),
+                .max(100, i18n.t('validations.emailLength')),
             name: Yup.string()
                 .required(i18n.t('validations.nameRequired'))
                 .matches(/^[a-zA-Z]+ [a-zA-Z]+$/, i18n.t('validations.registerFullName')),
             password: Yup.string().required(i18n.t('validations.passwordRequired')).min(8, i18n.t('validations.passwordLength'))
         }),
         onSubmit: async values => {
+            const emailExists = await emailAlreadyExist(String(values.email), this)
+
+            if (emailExists) {
+                validation.setFieldError('email', i18n.t('validations.emailAlreadyExist'))
+                return
+            }
+
             const fullName = await splitFullName(values.name)
 
-            await submitRegister(
-                {
-                    email: values.email,
-                    firstName: fullName.firstName,
-                    lastName: fullName.lastName,
-                    fullName: values.name,
-                    password: values.password,
-                    companyUser: {
-                        subtype: USER_TYPE.ADMIN
-                    }
-                },
-                this
-            )
+            const body = {
+                email: values.email,
+                firstName: fullName.firstName,
+                lastName: fullName.lastName,
+                fullName: values.name,
+                password: values.password,
+                companyUser: {
+                    subtype: USER_TYPE.ADMIN
+                }
+            }
+
+            await submitRegister(body, this)
         }
     })
 
@@ -99,7 +95,7 @@ const RegisterUser = () => {
                                                 </div>
 
                                                 <div className="mt-4">
-                                                    <form>
+                                                    <form onSubmit={validation.handleSubmit}>
                                                         <div className="mb-3">
                                                             <Label htmlFor="email" className="form-label">
                                                                 {i18n.t<string>('labels.email')} <span className="text-danger">*</span>
@@ -179,8 +175,8 @@ const RegisterUser = () => {
 
                                                         <div className="mt-4">
                                                             <Button
-                                                                disabled={loading || !acceptTerms || !validation.isValid}
                                                                 color="primary"
+                                                                disabled={loading}
                                                                 className="btn btn-primary w-100"
                                                                 type="submit"
                                                                 onClick={() => validation.submitForm()}

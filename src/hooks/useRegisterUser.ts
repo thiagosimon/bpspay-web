@@ -17,10 +17,8 @@ const useRegisterUser = () => {
         try {
             const response = await registerUserService(data, navigation)
             const { result } = response.data
-            const { status, message } = result
 
-            if (status === 200 && message === 'success' && result) {
-                console.log('success')
+            if (response.status === 200 && result) {
                 navigate('/check-registration-email')
             }
         } catch (error) {

@@ -12,5 +12,6 @@ export const validations = {
     registerFullName: 'O nome completo é obrigatório',
     aceptTerms: 'Você deve aceitar os termos de uso da plataforma',
     emailMinLength: 'O e-mail deve ter no mínimo 5 caracteres',
-    emailMaxLength: 'O e-mail deve ter no máximo 100 caracteres'
+    emailMaxLength: 'O e-mail deve ter no máximo 100 caracteres',
+    emailAlreadyExist: 'O e-mail já está cadastrado'
 }

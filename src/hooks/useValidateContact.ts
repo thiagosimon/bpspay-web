@@ -13,15 +13,11 @@ const useValidateContact = () => {
 
         try {
             const response = await emailAlreadyExistService(email, navigation)
-            const { result } = response.data
-            const { status, messageId } = result
+            const { result, messageId } = response.data
 
-            if (status === 200) {
-                if (messageId === 'response.email.not.exist' && !result?.alreadyExist) {
-                    return false
-                } else if (messageId === 'response.email.already.exists' && result?.alreadyExist) {
-                    return true
-                }
+            if (response.status === 200 && messageId === 'response.email.already.exists' && result) {
+                setLoadingEmail(false)
+                return true
             }
         } catch (error) {
             console.error(error)
@@ -29,7 +25,7 @@ const useValidateContact = () => {
             setLoadingEmail(false)
         }
 
-        return null
+        return false
     }
 
     return { emailAlreadyExist, loadingEmail }

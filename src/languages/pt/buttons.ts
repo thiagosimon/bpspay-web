@@ -19,5 +19,6 @@ export const buttons = {
     loading: 'Carregando',
     register: 'Cadastrar',
     sendUpdate: 'Enviar alteração',
-    backToHome: 'Voltar para home'
+    backToHome: 'Voltar para home',
+    goToLogin: 'Ir para login'
 }

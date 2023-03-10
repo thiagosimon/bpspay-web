@@ -5,5 +5,6 @@ export const titles = {
     resetPassword: 'Criar nova Senha',
     termsOfUse: 'Termos de Uso',
     oops: 'Oops!',
-    pageNotFound: 'Desculpe, página não encontrada.'
+    pageNotFound: 'Desculpe, página não encontrada.',
+    goodWork: 'Bom trabalho!'
 }
