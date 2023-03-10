@@ -21,6 +21,7 @@ export const validations = {
     socialNameMinLength: 'A razão social deve ter no mínimo 3 caracteres',
     socialNameMaxLength: 'A razão social deve ter no máximo 100 caracteres',
     responsableFederalTaxIdRequired: 'O CPF do responsável é obrigatório',
+    federalTaxIdRequired: 'O CPF é obrigatório',
     responsableFederalTaxIdInvalid: 'O CPF do responsável é inválido',
     responsableFederalTaxIdLength: 'O CPF do responsável deve ter 11 caracteres',
     documentAlreadyExist: 'O CNPJ já está cadastrado'

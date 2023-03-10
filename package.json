@@ -19,6 +19,7 @@
         "format": "prettier --write \"**/*.{js,jsx,json,md,html,css,less,scss}\""
     },
     "dependencies": {
+        "-": "^0.0.1",
         "@ckeditor/ckeditor5-build-classic": "^32.0.0",
         "@ckeditor/ckeditor5-react": "^4.0.0",
         "@fullcalendar/bootstrap": "^5.11.0",
@@ -84,6 +85,7 @@
         "react-google-login": "^5.2.2",
         "react-i18next": "^11.15.3",
         "react-image-lightbox": "^5.1.4",
+        "react-input-mask": "^3.0.0-alpha.2",
         "react-jvectormap": "^0.0.16",
         "react-leaflet": "^4.0.2",
         "react-masonry-component": "^6.3.0",
@@ -137,6 +139,7 @@
     },
     "devDependencies": {
         "@types/cleave.js": "^1.4.7",
+        "@types/react-input-mask": "^3.0.2",
         "babel-plugin-prismjs": "^2.1.0",
         "eslint-config-prettier": "^8.6.0",
         "eslint-plugin-prettier": "^4.2.1",
