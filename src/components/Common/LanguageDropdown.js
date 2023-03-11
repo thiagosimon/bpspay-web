@@ -1,7 +1,7 @@
+import { get } from 'lodash'
 import React, { useEffect, useState } from 'react'
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap'
-import { get, map } from 'lodash'
 import { useTranslation } from 'react-i18next'
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap'
 
 import languages from '../../common/languages'
 

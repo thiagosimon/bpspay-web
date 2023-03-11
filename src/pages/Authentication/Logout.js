@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom'
 import { logoutUser } from '../../store/actions'
 
 //redux
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import withRouter from '../../components/Common/withRouter'
 

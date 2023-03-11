@@ -1,7 +1,6 @@
 import React from 'react'
 import { Col, Container, Row } from 'reactstrap'
 import BreadCrumb from '../../components/Common/BreadCrumb'
-import Widget from './Widgets'
 import BestSellingProducts from './BestSellingProducts'
 import RecentActivity from './RecentActivity'
 import RecentOrders from './RecentOrders'
@@ -10,6 +9,7 @@ import SalesByLocations from './SalesByLocations'
 import Section from './Section'
 import StoreVisits from './StoreVisits'
 import TopSellers from './TopSellers'
+import Widget from './Widgets'
 
 const DashboardEcommerce = () => {
     document.title = 'Dashboard | Velzon - React Admin & Dashboard Template'

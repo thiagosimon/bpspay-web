@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
-import { Row, Col, CardBody, Card, Alert, Container, Input, Label, Form, FormFeedback, Button } from 'reactstrap'
+import { Alert, Card, CardBody, Col, Container, Form, FormFeedback, Input, Label, Row } from 'reactstrap'
 
 // Formik Validation
-import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 // action
-import { registerUser, apiError, resetRegisterFlag } from '../../store/actions'
+import { apiError, registerUser, resetRegisterFlag } from '../../store/actions'
 
 //redux
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Link, useNavigate } from 'react-router-dom'
 

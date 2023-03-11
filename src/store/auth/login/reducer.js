@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGIN_SUCCESS, LOGOUT_USER, LOGOUT_USER_SUCCESS, API_ERROR, RESET_LOGIN_FLAG } from './actionTypes'
+import { API_ERROR, LOGIN_SUCCESS, LOGIN_USER, LOGOUT_USER, LOGOUT_USER_SUCCESS, RESET_LOGIN_FLAG } from './actionTypes'
 
 const initialState = {
     errorMsg: '',

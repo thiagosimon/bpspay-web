@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import { Link } from 'react-router-dom'
 import { Button, Card, Col, Container, FormFeedback, Input, Label, Row, Spinner } from 'reactstrap'
 
 import i18n from '../../../i18n'
 import AuthSlider from '../Components/AuthCarousel'
 
 import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
-import { loginUser, resetLoginFlag } from '../../../store/actions'
+import { useLogin } from '../../../hooks/useLogin'
 import AuthFooter from '../Components/AuthFooter'
 
 type LoginState = {
@@ -22,12 +22,10 @@ type LoginState = {
 }
 
 const Login = () => {
-    const dispatch = useDispatch()
-
-    const { user, errorMsg, loading, error } = useSelector((state: LoginState) => ({
+    const { submitLogin, loading } = useLogin()
+    const { user, errorMsg, error } = useSelector((state: LoginState) => ({
         user: state.Login.user,
         errorMsg: state.Login.errorMsg,
-        loading: state.Login.loading,
         error: state.Login.error
     }))
 
@@ -47,27 +45,16 @@ const Login = () => {
             email: Yup.string().required(i18n.t('validations.emailRequired')),
             password: Yup.string().required(i18n.t('validations.passwordRequired'))
         }),
-        onSubmit: values => {
-            dispatch(loginUser(values, '/dashboard'))
+        onSubmit: async values => {
+            await submitLogin(
+                {
+                    email: values.email,
+                    password: values.password
+                },
+                this
+            )
         }
     })
-
-    useEffect(() => {
-        if (user && user) {
-            setUserLogin({
-                email: user.user.email,
-                password: user.user.password
-            })
-        }
-    }, [user])
-
-    useEffect(() => {
-        if (error) {
-            setTimeout(() => {
-                dispatch(resetLoginFlag())
-            }, 3000)
-        }
-    }, [dispatch, error])
 
     return (
         <React.Fragment>
@@ -89,7 +76,7 @@ const Login = () => {
                                                 </div>
 
                                                 <div className="mt-4">
-                                                    <form action="/">
+                                                    <form>
                                                         <div className="mb-3">
                                                             <Label htmlFor="email" className="form-label">
                                                                 {i18n.t<string>('labels.email')}
@@ -123,7 +110,7 @@ const Login = () => {
                                                                     name="password"
                                                                     className="form-control"
                                                                     placeholder={i18n.t<string>('placeholder.enterPassword')}
-                                                                    type="password"
+                                                                    type={passwordShow ? 'text' : 'password'}
                                                                     onChange={validation.handleChange}
                                                                     onBlur={validation.handleBlur}
                                                                     value={validation.values.password || ''}
@@ -156,11 +143,11 @@ const Login = () => {
                                                                 disabled={error || loading}
                                                                 className="btn btn-primary w-100"
                                                                 type="submit"
+                                                                onClick={() => validation.submitForm()}
                                                             >
                                                                 {error ? null : loading ? (
                                                                     <Spinner size="sm" className="me-2">
-                                                                        {' '}
-                                                                        {i18n.t<string>('buttons.loading')}...{' '}
+                                                                        {loading && i18n.t<string>('buttons.loading')}...
                                                                     </Spinner>
                                                                 ) : null}
                                                                 {i18n.t<string>('buttons.signIn')}

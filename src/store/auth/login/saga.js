@@ -5,8 +5,8 @@ import { LOGIN_USER, LOGOUT_USER, SOCIAL_LOGIN } from './actionTypes'
 import { apiError, loginSuccess, logoutUserSuccess } from './actions'
 
 //Include Both Helper File with needed methods
-import { getFirebaseBackend } from '../../../helpers/firebase_helper'
 import { postFakeLogin, postJwtLogin, postSocialLogin } from '../../../helpers/fakebackend_helper'
+import { getFirebaseBackend } from '../../../helpers/firebase_helper'
 
 const fireBaseBackend = getFirebaseBackend()
 
@@ -16,7 +16,7 @@ function* loginUser({ payload: { user, history } }) {
             const response = yield call(fireBaseBackend.loginUser, user.email, user.password)
             if (response) {
                 yield put(loginSuccess(response))
-                history('/dashboard')
+                // history('/dashboard')
             } else {
                 yield put(apiError(response))
             }
@@ -28,7 +28,7 @@ function* loginUser({ payload: { user, history } }) {
             sessionStorage.setItem('authUser', JSON.stringify(response))
             if (response) {
                 yield put(loginSuccess(response))
-                history('/dashboard')
+                // history('/dashboard')
             } else {
                 yield put(apiError(response))
             }
@@ -39,7 +39,7 @@ function* loginUser({ payload: { user, history } }) {
             })
             if (response.status === 'success') {
                 yield put(loginSuccess(response))
-                history('/dashboard')
+                // history('/dashboard')
                 sessionStorage.setItem('authUser', JSON.stringify(response))
             } else {
                 yield put(apiError(response))

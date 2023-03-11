@@ -1,5 +1,5 @@
-import React from 'react';
-import { CardHeader, Input, Label } from 'reactstrap';
+import React from 'react'
+import { CardHeader, Input, Label } from 'reactstrap'
 
 const PreviewCardHeader = ({ title }) => {
     return (
@@ -14,7 +14,7 @@ const PreviewCardHeader = ({ title }) => {
                 </div>
             </CardHeader>
         </React.Fragment>
-    );
+    )
 }
 
-export default PreviewCardHeader;
+export default PreviewCardHeader

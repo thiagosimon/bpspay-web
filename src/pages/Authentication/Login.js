@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { Card, CardBody, Col, Container, Input, Label, Row, Button, Form, FormFeedback, Alert, Spinner } from 'reactstrap'
+import { Alert, Button, Card, CardBody, Col, Container, Form, FormFeedback, Input, Label, Row, Spinner } from 'reactstrap'
 import ParticlesAuth from '../AuthenticationInner/ParticlesAuth'
 
 //redux
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
 // Formik validation
-import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 //Social Media Imports
 import { GoogleLogin } from 'react-google-login'
 // import TwitterLogin from "react-twitter-auth"
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 // actions
-import { loginUser, socialLogin, resetLoginFlag } from '../../store/actions'
+import { loginUser, resetLoginFlag, socialLogin } from '../../store/actions'
 
 import logoLight from '../../assets/images/logo-light.png'
 
 //Import config
-import { facebook, google } from '../../config'
 import withRouter from '../../components/Common/withRouter'
+import { facebook, google } from '../../config'
 
 const Login = props => {
     const dispatch = useDispatch()

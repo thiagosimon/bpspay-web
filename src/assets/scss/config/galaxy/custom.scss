@@ -120,3 +120,44 @@ File: Custom Css File
 .dwPlXY:not(:last-of-type) {
   border-bottom-color: $table-border-color !important;
 }
+
+.custom-modal .modal-dialog {
+    max-width: 800px;
+  }
+
+  .custom-modal .modal-content {
+    max-height: 80vh;
+  }
+
+  .custom-modal .custom-header {
+    background-color: #644BC5;
+    color: #ffffff;
+  }
+
+    .custom-modal .custom-header .modal-title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #ffffff;
+    }
+
+    .modal-content {
+        border: none !important;
+        border-radius: 0.8rem !important;
+        background-color: #FCFCFC
+    }
+
+    .logo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 35px;
+        margin-right: 45px;
+        margin-top: 24px;
+      }
+
+      .close-modal-button {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        cursor: pointer;
+      }

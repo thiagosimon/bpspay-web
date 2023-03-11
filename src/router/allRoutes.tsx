@@ -6,7 +6,7 @@ import DashboardAnalytics from '../pages/DashboardAnalytics'
 import DashboardCrm from '../pages/DashboardCrm'
 import DashboardCrypto from '../pages/DashboardCrypto'
 import DashboardEcommerce from '../pages/DashboardEcommerce'
-import DashboardJob from '../pages/DashboardJob/'
+import DashboardJob from '../pages/DashboardJob'
 import DashboardNFT from '../pages/DashboardNFT'
 import DashboardProject from '../pages/DashboardProject'
 
@@ -166,7 +166,6 @@ import Starter from '../pages/Pages/Starter/Starter'
 import Team from '../pages/Pages/Team/Team'
 import Timeline from '../pages/Pages/Timeline/Timeline'
 
-import Alt404 from '../pages/AuthenticationInner/Errors/Alt404'
 import Basic404 from '../pages/AuthenticationInner/Errors/Basic404'
 import Cover404 from '../pages/AuthenticationInner/Errors/Cover404'
 import Error500 from '../pages/AuthenticationInner/Errors/Error500'
@@ -187,8 +186,8 @@ import CoverPasswCreate from '../pages/AuthenticationInner/PasswordCreate/CoverP
 //login
 // import Login from "../pages/Authentication/Login";
 import Login from '../pages/Authentication/Login/Login'
-import Logout from '../pages/Authentication/Logout'
-import Register from '../pages/Authentication/Register/Register'
+import Logout from '../pages/Authentication/Logout/Logout'
+import RegisterUser from '../pages/Authentication/RegisterUser/RegisterUser'
 import ResetPassword from '../pages/Authentication/ResetPassword/ResetPassword'
 
 //Charts
@@ -237,6 +236,12 @@ import UserProfile from '../pages/Authentication/user-profile'
 import FileManager from '../pages/FileManager'
 import ToDoList from '../pages/ToDo'
 
+import CheckRegistrationEmail from '../pages/Authentication/CheckRegistrationEmail/CheckRegistrationEmail'
+import ConfirmCompanyRegistration from '../pages/Authentication/ConfirmCompanyRegistration/ConfirmCompanyRegistration'
+import ConfirmUserRegistration from '../pages/Authentication/ConfirmUserRegistration/ConfirmUserRegistration'
+import PageNotFound from '../pages/Authentication/Errors/PageNotFound'
+import RegisterCompany from '../pages/Authentication/RegisterCompany/RegisterCompany'
+import ServiceAgreementTerm from '../pages/Authentication/ServiceAgreementTerm/ServiceAgreementTerm'
 import JobLanding from '../pages/Job_Landing/Job'
 import PrivecyPolicy from '../pages/Pages/PrivacyPolicy'
 import TermsCondition from '../pages/Pages/TermsCondition'
@@ -438,7 +443,6 @@ const authProtectedRoutes = [
     { path: '/pages-privacy-policy', component: <PrivecyPolicy /> },
     { path: '/pages-terms-condition', component: <TermsCondition /> },
 
-    //User Profile
     { path: '/profile', component: <UserProfile /> },
 
     // this route should be at the end of all other routes
@@ -448,7 +452,7 @@ const authProtectedRoutes = [
         exact: true,
         component: <Navigate to="/dashboard" />
     },
-    { path: '*', component: <Navigate to="/dashboard" /> }
+    { path: '*', component: <Navigate to="/auth-404" /> }
 ]
 
 const publicRoutes = [
@@ -456,7 +460,13 @@ const publicRoutes = [
     { path: '/logout', component: <Logout /> },
     { path: '/login', component: <Login /> },
     { path: '/reset-password', component: <ResetPassword /> },
-    { path: '/register', component: <Register /> },
+    { path: '/register', component: <RegisterUser /> },
+    { path: '/register-company', component: <RegisterCompany /> },
+    { path: '/auth-404', component: <PageNotFound /> },
+    { path: '/check-registration-email', component: <CheckRegistrationEmail /> },
+    { path: '/confirm-user-registration', component: <ConfirmUserRegistration /> },
+    { path: '/confirm-company-registration', component: <ConfirmCompanyRegistration /> },
+    { path: '/service-agreement-term', component: <ServiceAgreementTerm /> },
 
     //AuthenticationInner pages
     { path: '/auth-signin-basic', component: <BasicSignIn /> },
@@ -475,7 +485,6 @@ const publicRoutes = [
     { path: '/auth-twostep-cover', component: <CoverTwosVerify /> },
     { path: '/auth-404-basic', component: <Basic404 /> },
     { path: '/auth-404-cover', component: <Cover404 /> },
-    { path: '/auth-404-alt', component: <Alt404 /> },
     { path: '/auth-500', component: <Error500 /> },
     { path: '/pages-maintenance', component: <Maintenance /> },
     { path: '/pages-coming-soon', component: <ComingSoon /> },
@@ -486,7 +495,8 @@ const publicRoutes = [
 
     { path: '/auth-pass-change-basic', component: <BasicPasswCreate /> },
     { path: '/auth-pass-change-cover', component: <CoverPasswCreate /> },
-    { path: '/auth-offline', component: <Offlinepage /> }
+    { path: '/auth-offline', component: <Offlinepage /> },
+    { path: '*', component: <Navigate to="/auth-404" /> }
 ]
 
 export { authProtectedRoutes, publicRoutes }

@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
 import { isEmpty } from 'lodash'
+import React, { useEffect, useState } from 'react'
 
-import { Container, Row, Col, Card, Alert, CardBody, Button, Label, Input, FormFeedback, Form } from 'reactstrap'
+import { Alert, Button, Card, CardBody, Col, Container, Form, FormFeedback, Input, Label, Row } from 'reactstrap'
 
 // Formik Validation
-import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 //redux
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import avatar from '../../assets/images/users/avatar-1.jpg'
 // actions

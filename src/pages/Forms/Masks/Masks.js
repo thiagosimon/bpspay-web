@@ -1,8 +1,8 @@
+import 'cleave.js/dist/addons/cleave-phone.in'
+import Cleave from 'cleave.js/react'
 import React, { useState } from 'react'
 import { Card, CardBody, CardHeader, Col, Container, Row } from 'reactstrap'
 import BreadCrumb from '../../../components/Common/BreadCrumb'
-import Cleave from 'cleave.js/react'
-import 'cleave.js/dist/addons/cleave-phone.in'
 
 const Masks = () => {
     const [date, setDate] = useState('')

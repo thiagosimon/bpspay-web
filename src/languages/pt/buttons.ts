@@ -18,5 +18,9 @@ export const buttons = {
     update: 'Atualizar',
     loading: 'Carregando',
     register: 'Cadastrar',
-    sendUpdate: 'Enviar alteração'
+    sendUpdate: 'Enviar alteração',
+    backToHome: 'Voltar para home',
+    goToLogin: 'Ir para login',
+    enter: 'Entrar',
+    sendRegister: 'Enviar cadastro'
 }

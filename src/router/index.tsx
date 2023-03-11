@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
 
 //Layouts
 import NonAuthLayout from '../layouts/NonAuthLayout'
 import VerticalLayout from '../layouts/index'
 
 //routes
-import { authProtectedRoutes, publicRoutes } from './allRoutes'
 import { AuthProtected } from './AuthProtected'
+import { authProtectedRoutes, publicRoutes } from './allRoutes'
 
 const Index = () => {
     return (
@@ -15,7 +15,7 @@ const Index = () => {
             <Routes>
                 <Route>
                     {publicRoutes.map((route, idx) => (
-                        <Route path={route.path} element={<NonAuthLayout>{route.component}</NonAuthLayout>} key={idx} exact={true} />
+                        <Route path={route.path} element={<NonAuthLayout>{route.component}</NonAuthLayout>} key={idx} />
                     ))}
                 </Route>
 
@@ -29,7 +29,6 @@ const Index = () => {
                                 </AuthProtected>
                             }
                             key={idx}
-                            exact={true}
                         />
                     ))}
                 </Route>

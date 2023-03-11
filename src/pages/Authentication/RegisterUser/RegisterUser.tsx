@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button, Card, Col, Container, FormFeedback, Input, Label, Row, Spinner } from 'reactstrap'
 
 import AuthSlider from '../Components/AuthCarousel'
@@ -9,64 +9,71 @@ import AuthFooter from '../Components/AuthFooter'
 import i18n from '../../../i18n'
 
 import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
-import { apiError, registerUser, resetRegisterFlag } from '../../../store/actions'
 
-type Registertate = {
-    Account: {
-        registrationError: any
-        loading: boolean
-        success: any
-        error: any
-    }
-}
+import GenericModal from '../../../components/Common/GenericModal/GenericModal'
+import useRegisterUser from '../../../hooks/useRegisterUser'
+import useTerms from '../../../hooks/useTerms'
+import useValidateContact from '../../../hooks/useValidateContact'
+import { USER_TYPE } from '../../../utils/Constant'
+import { splitFullName } from '../../../utils/Helper'
 
-const Register = () => {
-    const history = useNavigate()
-    const dispatch = useDispatch()
+const RegisterUser = () => {
+    const { submitRegister, loading } = useRegisterUser()
+    const { termsOfUse } = useTerms()
+    const { emailAlreadyExist } = useValidateContact()
 
-    const { registrationError, loading, success, error } = useSelector((state: Registertate) => ({
-        registrationError: state.Account.registrationError,
-        loading: state.Account.loading,
-        success: state.Account.success,
-        error: state.Account.error
-    }))
-
-    const [passwordShow, setPasswordShow] = useState(false)
+    const [passwordShow, setPasswordShow] = useState<boolean>(false)
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [acceptTerms, setAcceptTerms] = useState<boolean>(false)
 
     const validation = useFormik({
-        // enableReinitialize : use this flag when initial values needs to be changed
-        enableReinitialize: true,
-
+        enableReinitialize: false,
         initialValues: {
             email: '',
             name: '',
             password: ''
         },
         validationSchema: Yup.object({
-            email: Yup.string().required(i18n.t('validations.emailRequired')),
-            name: Yup.string().required(i18n.t('validations.nameRequired')),
-            password: Yup.string().required(i18n.t('validations.passwordRequired'))
+            email: Yup.string()
+                .required(i18n.t('validations.emailRequired'))
+                .email(i18n.t('validations.emailInvalid'))
+                .min(5, i18n.t('validations.emailLength'))
+                .max(100, i18n.t('validations.emailLength')),
+            name: Yup.string()
+                .required(i18n.t('validations.nameRequired'))
+                .matches(/^[a-zA-Z]+ [a-zA-Z]+$/, i18n.t('validations.registerFullName')),
+            password: Yup.string().required(i18n.t('validations.passwordRequired')).min(8, i18n.t('validations.passwordLength'))
         }),
-        onSubmit: values => {
-            dispatch(registerUser(values))
+        onSubmit: async values => {
+            const emailExists = await emailAlreadyExist(String(values.email), this)
+
+            if (emailExists) {
+                validation.setFieldError('email', i18n.t('validations.emailAlreadyExist'))
+                return
+            }
+
+            const fullName = await splitFullName(values.name)
+
+            const body = {
+                email: values.email,
+                firstName: fullName.firstName,
+                lastName: fullName.lastName,
+                fullName: values.name,
+                password: values.password,
+                companyUser: {
+                    subtype: USER_TYPE.ADMIN
+                }
+            }
+
+            await submitRegister(body, this)
         }
     })
 
-    useEffect(() => {
-        dispatch(apiError(''))
-    }, [dispatch])
-
-    useEffect(() => {
-        if (success) {
-            setTimeout(() => history('/login'), 3000)
-        }
-
-        setTimeout(() => {
-            dispatch(resetRegisterFlag())
-        }, 3000)
-    }, [dispatch, success, error, history])
+    const onHandleSubmitTerms = (value: boolean) => {
+        setAcceptTerms(value)
+        setShowModal(false)
+    }
 
     return (
         <React.Fragment>
@@ -88,7 +95,7 @@ const Register = () => {
                                                 </div>
 
                                                 <div className="mt-4">
-                                                    <form action="/">
+                                                    <form onSubmit={validation.handleSubmit}>
                                                         <div className="mb-3">
                                                             <Label htmlFor="email" className="form-label">
                                                                 {i18n.t<string>('labels.email')} <span className="text-danger">*</span>
@@ -96,7 +103,7 @@ const Register = () => {
                                                             <Input
                                                                 name="email"
                                                                 className="form-control"
-                                                                placeholder="Enter email"
+                                                                placeholder={i18n.t<string>('placeholder.enterEmail')}
                                                                 type="email"
                                                                 onChange={validation.handleChange}
                                                                 onBlur={validation.handleBlur}
@@ -128,35 +135,37 @@ const Register = () => {
                                                             ) : null}
                                                         </div>
 
-                                                        <div className="position-relative auth-pass-inputgroup mb-3">
-                                                            <Label htmlFor="password" className="form-label">
+                                                        <div className="mb-3">
+                                                            <Label className="form-label" htmlFor="password-input">
                                                                 {i18n.t<string>('labels.password')} <span className="text-danger">*</span>
                                                             </Label>
-                                                            <Input
-                                                                name="password"
-                                                                className="form-control"
-                                                                placeholder={i18n.t<string>('placeholder.enterPassword')}
-                                                                type="password"
-                                                                onChange={validation.handleChange}
-                                                                onBlur={validation.handleBlur}
-                                                                value={validation.values.password || ''}
-                                                                invalid={validation.touched.password && validation.errors.password ? true : false}
-                                                            />
-                                                            <button
-                                                                className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                                                type="button"
-                                                                id="password-addon"
-                                                                onClick={() => setPasswordShow(!passwordShow)}
-                                                            >
-                                                                {!validation.errors.password && <i className="ri-eye-fill align-middle" />}
-                                                            </button>
-                                                            {validation.touched.password && validation.errors.password ? (
-                                                                <FormFeedback type="invalid">{validation.errors.password}</FormFeedback>
-                                                            ) : null}
+                                                            <div className="position-relative auth-pass-inputgroup mb-3">
+                                                                <Input
+                                                                    name="password"
+                                                                    className="form-control"
+                                                                    placeholder={i18n.t<string>('placeholder.enterPassword')}
+                                                                    type={passwordShow ? 'text' : 'password'}
+                                                                    onChange={validation.handleChange}
+                                                                    onBlur={validation.handleBlur}
+                                                                    value={validation.values.password || ''}
+                                                                    invalid={validation.touched.password && validation.errors.password ? true : false}
+                                                                />
+                                                                <button
+                                                                    className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                                                                    type="button"
+                                                                    id="password-addon"
+                                                                    onClick={() => setPasswordShow(!passwordShow)}
+                                                                >
+                                                                    {!validation.errors.password && <i className="ri-eye-fill align-middle" />}
+                                                                </button>
+                                                                {validation.touched.password && validation.errors.password ? (
+                                                                    <FormFeedback type="invalid">{validation.errors.password}</FormFeedback>
+                                                                ) : null}
+                                                            </div>
                                                         </div>
 
                                                         <div className="mb-4">
-                                                            <p className="mb-0 fs-12 text-muted fst-italic">
+                                                            <p className="mb-0 fs-12 text-muted fst-italic" onClick={() => setShowModal(true)}>
                                                                 {i18n.t<string>('labels.readAndAcceptTermsRequired')}
                                                                 <Link to="#" className="text-primary text-decoration-underline fst-normal fw-medium">
                                                                     {i18n.t<string>('hyperlink.termsOfUse')}
@@ -167,16 +176,12 @@ const Register = () => {
                                                         <div className="mt-4">
                                                             <Button
                                                                 color="primary"
-                                                                disabled={error || loading}
+                                                                disabled={loading || !acceptTerms || !validation.isValid}
                                                                 className="btn btn-primary w-100"
                                                                 type="submit"
+                                                                onClick={() => validation.submitForm()}
                                                             >
-                                                                {error ? null : loading ? (
-                                                                    <Spinner size="sm" className="me-2">
-                                                                        {' '}
-                                                                        {i18n.t<string>('buttons.loading')}...{' '}
-                                                                    </Spinner>
-                                                                ) : null}
+                                                                {loading ? <Spinner size="sm" className="me-2" /> : null}
                                                                 {i18n.t<string>('buttons.register')}
                                                             </Button>
                                                         </div>
@@ -201,9 +206,19 @@ const Register = () => {
                     </Container>
                 </div>
                 <AuthFooter />
+                <GenericModal
+                    show={showModal}
+                    title={i18n.t('titles.termsOfUse')}
+                    description={termsOfUse}
+                    acceptTerms={acceptTerms}
+                    headerCloseIcon={true}
+                    acceptTitle={i18n.t('labels.acceptTermsOfUseRequire')}
+                    onCloseClick={() => setShowModal(false)}
+                    onAcceptClick={() => onHandleSubmitTerms(!acceptTerms)}
+                />
             </div>
         </React.Fragment>
     )
 }
 
-export default Register
+export default RegisterUser
