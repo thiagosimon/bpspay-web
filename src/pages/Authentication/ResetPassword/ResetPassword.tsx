@@ -5,7 +5,9 @@ import AuthSlider from '../Components/AuthCarousel'
 
 import { useFormik } from 'formik'
 // import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
+import { PAGE } from '../../../utils/Route'
 import AuthFooter from '../Components/AuthFooter'
 
 type ResetPasswordState = {
@@ -18,12 +20,17 @@ type ResetPasswordState = {
 }
 
 const ResetPassword = () => {
+    const navigate = useNavigate()
+
     const [passwordShow, setPasswordShow] = useState(false)
     const [confirmPasswordShow, setConfirmPasswordShow] = useState(false)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
 
-    // const dispatch = useDispatch()
+    const onHandleNavigateToLogin = () => {
+        navigate(PAGE.LOGIN)
+    }
+
     const validation = useFormik({
         enableReinitialize: true,
         initialValues: {
@@ -34,9 +41,7 @@ const ResetPassword = () => {
             password: Yup.string().required(i18n.t('validations.passwordRequired')),
             confirmPassword: Yup.string().required(i18n.t('validations.confirmPasswordRequired'))
         }),
-        onSubmit: values => {
-            // dispatch(resetPassword(values, '/dashboard'))
-        }
+        onSubmit: values => {}
     })
 
     return (
@@ -148,7 +153,12 @@ const ResetPassword = () => {
                                                 <div className="mt-5 text-center">
                                                     <p className="pt-5 mb-0">
                                                         {i18n.t<string>('labels.IRememberMyPassword')}{' '}
-                                                        <a href="/login" className="fw-semibold text-primary text-decoration-underline">
+                                                        <a
+                                                            onClick={() => {
+                                                                onHandleNavigateToLogin()
+                                                            }}
+                                                            className="fw-semibold text-primary text-decoration-underline"
+                                                        >
                                                             {' '}
                                                             {i18n.t<string>('hyperlink.clickHere')}
                                                         </a>{' '}

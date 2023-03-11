@@ -1,12 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button, Card, Col, Container, Row } from 'reactstrap'
 import i18n from '../../../i18n'
 import AuthSlider from '../Components/AuthCarousel'
 
+import { PAGE } from '../../../utils/Route'
 import AuthFooter from '../Components/AuthFooter'
 
 const ConfirmUserRegistration = () => {
+    const navigate = useNavigate()
+
+    const onHandleNavigateToLogin = () => {
+        navigate(PAGE.LOGIN)
+    }
+
     return (
         <React.Fragment>
             <div className="auth-page-wrapper py-5 d-flex justify-content-center align-items-center min-vh-100">
@@ -40,7 +47,7 @@ const ConfirmUserRegistration = () => {
                                                         className="btn btn-primary w-100"
                                                         type="submit"
                                                         onClick={() => {
-                                                            window.location.href = '/login'
+                                                            onHandleNavigateToLogin()
                                                         }}
                                                     >
                                                         {i18n.t<string>('buttons.goToLogin')}
@@ -50,7 +57,7 @@ const ConfirmUserRegistration = () => {
                                                 <div className="mt-3 mb-5 text-center p-4">
                                                     <p className="mb-0 text-muted">
                                                         {i18n.t<string>('descriptions.redirectToLoginInSeconds')}
-                                                        <Link to="/login" className="text-primary text-decoration-underline">
+                                                        <Link to={PAGE.LOGIN} className="text-primary text-decoration-underline">
                                                             {' '}
                                                             {i18n.t<string>('hyperlink.clickHere')}{' '}
                                                         </Link>{' '}
