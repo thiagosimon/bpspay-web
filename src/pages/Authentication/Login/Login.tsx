@@ -7,9 +7,10 @@ import AuthSlider from '../Components/AuthCarousel'
 
 import { useFormik } from 'formik'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { useLogin } from '../../../hooks/useLogin'
+import { PAGE } from '../../../utils/Route'
 import AuthFooter from '../Components/AuthFooter'
 
 type LoginState = {
@@ -23,6 +24,7 @@ type LoginState = {
 
 const Login = () => {
     const { submitLogin, loading } = useLogin()
+    const navigate = useNavigate()
     const { user, errorMsg, error } = useSelector((state: LoginState) => ({
         user: state.Login.user,
         errorMsg: state.Login.errorMsg,
@@ -55,6 +57,10 @@ const Login = () => {
             )
         }
     })
+
+    const onHandleRegisterNavigate = () => {
+        navigate(PAGE.REGISTER_USER)
+    }
 
     return (
         <React.Fragment>
@@ -159,7 +165,10 @@ const Login = () => {
                                                 <div className="mt-5 text-center">
                                                     <p className="pt-5 mb-0">
                                                         {i18n.t<string>('labels.dontHaveAccount')}{' '}
-                                                        <a href="/register" className="fw-semibold text-primary text-decoration-underline">
+                                                        <a
+                                                            onClick={() => onHandleRegisterNavigate()}
+                                                            className="fw-semibold text-primary text-decoration-underline"
+                                                        >
                                                             {' '}
                                                             {i18n.t<string>('hyperlink.signUp')}
                                                         </a>{' '}

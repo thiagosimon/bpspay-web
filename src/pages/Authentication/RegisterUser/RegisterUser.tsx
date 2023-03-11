@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button, Card, Col, Container, FormFeedback, Input, Label, Row, Spinner } from 'reactstrap'
 
 import AuthSlider from '../Components/AuthCarousel'
@@ -17,11 +17,13 @@ import useTerms from '../../../hooks/useTerms'
 import useValidateContact from '../../../hooks/useValidateContact'
 import { USER_TYPE } from '../../../utils/Constant'
 import { splitFullName } from '../../../utils/Helper'
+import { PAGE } from '../../../utils/Route'
 
 const RegisterUser = () => {
     const { submitRegister, loading } = useRegisterUser()
     const { termsOfUse } = useTerms()
     const { emailAlreadyExist } = useValidateContact()
+    const navigate = useNavigate()
 
     const [passwordShow, setPasswordShow] = useState<boolean>(false)
     const [showModal, setShowModal] = useState<boolean>(false)
@@ -73,6 +75,10 @@ const RegisterUser = () => {
     const onHandleSubmitTerms = (value: boolean) => {
         setAcceptTerms(value)
         setShowModal(false)
+    }
+
+    const onHandleNavigateToLogin = () => {
+        navigate(PAGE.LOGIN)
     }
 
     return (
@@ -191,7 +197,12 @@ const RegisterUser = () => {
                                                 <div className="pt-5 text-center">
                                                     <p className="mb-0">
                                                         <a>{i18n.t<string>('labels.hasAccount')} </a>
-                                                        <a href="/login" className="fw-semibold text-primary text-decoration-underline">
+                                                        <a
+                                                            onClick={() => {
+                                                                onHandleNavigateToLogin()
+                                                            }}
+                                                            className="fw-semibold text-primary text-decoration-underline"
+                                                        >
                                                             {' '}
                                                             {i18n.t<string>('hyperlink.login')}
                                                         </a>{' '}
