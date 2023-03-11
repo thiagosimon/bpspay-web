@@ -63,3 +63,7 @@ export const getSize = (size: number) => {
         width: size
     }
 }
+
+export const removeSpecialChars = async (text: string) => {
+    return text.replace(/[^0-9]/g, '')
+}

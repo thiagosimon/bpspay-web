@@ -176,18 +176,12 @@ const RegisterUser = () => {
                                                         <div className="mt-4">
                                                             <Button
                                                                 color="primary"
-                                                                disabled={loading}
+                                                                disabled={loading || !acceptTerms || !validation.isValid}
                                                                 className="btn btn-primary w-100"
                                                                 type="submit"
                                                                 onClick={() => validation.submitForm()}
                                                             >
-                                                                {loading ? (
-                                                                    <Spinner size="sm" className="me-2">
-                                                                        {i18n.t<string>('buttons.loading')}...
-                                                                    </Spinner>
-                                                                ) : (
-                                                                    <></>
-                                                                )}
+                                                                {loading ? <Spinner size="sm" className="me-2" /> : null}
                                                                 {i18n.t<string>('buttons.register')}
                                                             </Button>
                                                         </div>
@@ -217,6 +211,8 @@ const RegisterUser = () => {
                     title={i18n.t('titles.termsOfUse')}
                     description={termsOfUse}
                     acceptTerms={acceptTerms}
+                    headerCloseIcon={true}
+                    acceptTitle={i18n.t('labels.acceptTermsOfUseRequire')}
                     onCloseClick={() => setShowModal(false)}
                     onAcceptClick={() => onHandleSubmitTerms(!acceptTerms)}
                 />

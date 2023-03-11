@@ -15,6 +15,7 @@ export const emailAlreadyExistService = async (email: string, navigation: any) =
 export const documentAlreadyExistService = async (document: string, navigation: any) => {
     try {
         let header = await Request.getDefaultHeader()
+        console.log(`${Endpoints.companies.checkDocumentExist}${document}`)
         let response = await Request.do('get', header, {}, `${Endpoints.companies.checkDocumentExist}${document}`, navigation)
 
         return response

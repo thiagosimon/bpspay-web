@@ -11,5 +11,6 @@ export const titles = {
     youAreLoggedOut: 'Você foi desconectado',
     error500: 'Erro 500',
     serverError: 'Erro no servidor',
-    firstAccess: 'Primeiro acesso'
+    firstAccess: 'Primeiro acesso',
+    serviceAgreementTerms: 'Contrato de Prestação de Serviços'
 }

@@ -26,3 +26,9 @@ export const COMPANY_STATUS = {
     ARCHEIVED: 'ARCHEIVED',
     PENDING_ACCEPT_TERMS: 'PENDING_ACCEPT_TERMS'
 }
+
+export const COMPANY_SERVICE_STATUS = {
+    ALREADY_EXISTS: 'response.msg.document.already.exists',
+    REGISTER_ERROR: 'response.msg.register.error',
+    REGISTER_SUCCESS: 'response.msg.register.success'
+}

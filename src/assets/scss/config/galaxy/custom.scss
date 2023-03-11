@@ -146,6 +146,18 @@ File: Custom Css File
         background-color: #FCFCFC
     }
 
+    .logo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 35px;
+        margin-right: 45px;
+        margin-top: 24px;
+      }
 
-
-
+      .close-modal-button {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        cursor: pointer;
+      }

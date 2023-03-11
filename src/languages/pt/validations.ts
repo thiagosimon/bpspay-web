@@ -24,5 +24,6 @@ export const validations = {
     federalTaxIdRequired: 'O CPF é obrigatório',
     responsableFederalTaxIdInvalid: 'O CPF do responsável é inválido',
     responsableFederalTaxIdLength: 'O CPF do responsável deve ter 11 caracteres',
-    documentAlreadyExist: 'O CNPJ já está cadastrado'
+    documentAlreadyExist: 'O CNPJ já está cadastrado',
+    documentAlreadyRegistered: 'O CNPJ já está cadastrado'
 }

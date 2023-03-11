@@ -3,6 +3,8 @@ export type GenericModalProps = {
     title: string
     description: string
     acceptTerms: boolean
+    acceptTitle: string
+    headerCloseIcon: boolean
     onAcceptClick: () => void
-    onCloseClick: () => void
+    onCloseClick?: () => void
 }

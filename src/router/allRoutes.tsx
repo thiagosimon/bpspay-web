@@ -237,9 +237,11 @@ import FileManager from '../pages/FileManager'
 import ToDoList from '../pages/ToDo'
 
 import CheckRegistrationEmail from '../pages/Authentication/CheckRegistrationEmail/CheckRegistrationEmail'
-import ConfirmedRegistration from '../pages/Authentication/ConfirmedUserRegistration/ConfirmedUserRegistration'
+import ConfirmCompanyRegistration from '../pages/Authentication/ConfirmCompanyRegistration/ConfirmCompanyRegistration'
+import ConfirmUserRegistration from '../pages/Authentication/ConfirmUserRegistration/ConfirmUserRegistration'
 import PageNotFound from '../pages/Authentication/Errors/PageNotFound'
 import RegisterCompany from '../pages/Authentication/RegisterCompany/RegisterCompany'
+import ServiceAgreementTerm from '../pages/Authentication/ServiceAgreementTerm/ServiceAgreementTerm'
 import JobLanding from '../pages/Job_Landing/Job'
 import PrivecyPolicy from '../pages/Pages/PrivacyPolicy'
 import TermsCondition from '../pages/Pages/TermsCondition'
@@ -462,7 +464,9 @@ const publicRoutes = [
     { path: '/register-company', component: <RegisterCompany /> },
     { path: '/auth-404', component: <PageNotFound /> },
     { path: '/check-registration-email', component: <CheckRegistrationEmail /> },
-    { path: '/confirmed-user-registration', component: <ConfirmedRegistration /> },
+    { path: '/confirm-user-registration', component: <ConfirmUserRegistration /> },
+    { path: '/confirm-company-registration', component: <ConfirmCompanyRegistration /> },
+    { path: '/service-agreement-term', component: <ServiceAgreementTerm /> },
 
     //AuthenticationInner pages
     { path: '/auth-signin-basic', component: <BasicSignIn /> },

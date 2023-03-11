@@ -1,12 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Button, Card, Col, Container, Row } from 'reactstrap'
 import i18n from '../../../i18n'
 import AuthSlider from '../Components/AuthCarousel'
 
+import { useNavigate } from 'react-router-dom'
+import { PAGE } from '../../../utils/Route'
 import AuthFooter from '../Components/AuthFooter'
 
-const ConfirmedUserRegistration = () => {
+const ConfirmCompanyRegistration = () => {
+    const navigate = useNavigate()
+
+    const onHandleNavigate = () => {
+        navigate(PAGE.DASHBOARD)
+    }
+
     return (
         <React.Fragment>
             <div className="auth-page-wrapper py-5 d-flex justify-content-center align-items-center min-vh-100">
@@ -29,32 +36,20 @@ const ConfirmedUserRegistration = () => {
                                                     </div>
                                                 </div>
 
-                                                <div className="mt-5">
-                                                    <h4 className="text-primary">{i18n.t<string>('titles.goodWork')}</h4>
-                                                    <p className="text-muted"> {i18n.t<string>('subtitles.confirmationRegisterUser')} </p>
+                                                <div className="mt-5 mb-2">
+                                                    <h4 className="text-primary mb-4">{i18n.t<string>('titles.goodWork')}</h4>
+                                                    <p className="text-muted"> {i18n.t<string>('descriptions.confirmCompanyRegistration')} </p>
                                                 </div>
 
-                                                <div className="mt-4">
+                                                <div className="mt-4 mb-5">
                                                     <Button
                                                         color="primary"
                                                         className="btn btn-primary w-100"
                                                         type="submit"
-                                                        onClick={() => {
-                                                            window.location.href = '/login'
-                                                        }}
+                                                        onClick={() => onHandleNavigate()}
                                                     >
                                                         {i18n.t<string>('buttons.goToLogin')}
                                                     </Button>
-                                                </div>
-
-                                                <div className="mt-3 mb-5 text-center p-4">
-                                                    <p className="mb-0 text-muted">
-                                                        {i18n.t<string>('descriptions.redirectToLoginInSeconds')}
-                                                        <Link to="/login" className="text-primary text-decoration-underline">
-                                                            {' '}
-                                                            {i18n.t<string>('hyperlink.clickHere')}{' '}
-                                                        </Link>{' '}
-                                                    </p>
                                                 </div>
                                             </div>
                                         </Col>
@@ -70,4 +65,4 @@ const ConfirmedUserRegistration = () => {
     )
 }
 
-export default ConfirmedUserRegistration
+export default ConfirmCompanyRegistration
