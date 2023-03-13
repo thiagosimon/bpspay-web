@@ -40,7 +40,7 @@ const Login = () => {
     const validation = useFormik({
         enableReinitialize: true,
         initialValues: {
-            email: userLogin.email || 'admin@bpspay.com.br' || '',
+            email: userLogin.email || 'asda@dsadasdad.asd' || '',
             password: userLogin.password || '12345678' || ''
         },
         validationSchema: Yup.object({
@@ -151,11 +151,7 @@ const Login = () => {
                                                                 type="submit"
                                                                 onClick={() => validation.submitForm()}
                                                             >
-                                                                {error ? null : loading ? (
-                                                                    <Spinner size="sm" className="me-2">
-                                                                        {loading && i18n.t<string>('buttons.loading')}...
-                                                                    </Spinner>
-                                                                ) : null}
+                                                                {error ? null : loading ? <Spinner size="sm" className="me-2" /> : null}
                                                                 {i18n.t<string>('buttons.signIn')}
                                                             </Button>
                                                         </div>
@@ -167,7 +163,7 @@ const Login = () => {
                                                         {i18n.t<string>('labels.dontHaveAccount')}{' '}
                                                         <a
                                                             onClick={() => onHandleRegisterNavigate()}
-                                                            className="fw-semibold text-primary text-decoration-underline"
+                                                            className="fw-semibold text-primary text-decoration-underline cursor-pointer"
                                                         >
                                                             {' '}
                                                             {i18n.t<string>('hyperlink.signUp')}

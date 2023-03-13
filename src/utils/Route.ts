@@ -12,5 +12,6 @@ export enum PAGE {
     CONFIRM_REGISTRATION = '/confirm-user-registration',
     CONFIRM_COMPANY_REGISTRATION = '/confirm-company-registration',
     SERVICE_AGREEMENT_TERM = '/service-agreement-term',
-    DASHBOARD = '/dashboard'
+    DASHBOARD = '/dashboard',
+    EXPIRE_USER_REGISTER_LINK = '/expire-user-register-link'
 }

@@ -14,7 +14,9 @@ export const TERMS = {
 }
 
 export const USER_TYPE = {
-    ADMIN: 'ADMIN'
+    ADMIN: 'ADMIN',
+    ADMIN_MASTER: 'ADMIN_MASTER',
+    SUPER_ADMIN_MASTER: 'SUPER_ADMIN_MASTER'
 }
 
 export const COMPANY_TYPE = {
@@ -27,8 +29,20 @@ export const COMPANY_STATUS = {
     PENDING_ACCEPT_TERMS: 'PENDING_ACCEPT_TERMS'
 }
 
+export const USER_STATUS = {
+    ACTIVE: 'ACTIVE',
+    ARCHEIVED: 'ARCHEIVED',
+    PENDING_CONFIRMATION: 'PENDING_CONFIRMATION',
+    PENDING_ACCEPT_TERMS: 'PENDING_ACCEPT_TERMS'
+}
+
 export const COMPANY_SERVICE_STATUS = {
     ALREADY_EXISTS: 'response.msg.document.already.exists',
     REGISTER_ERROR: 'response.msg.register.error',
     REGISTER_SUCCESS: 'response.msg.register.success'
+}
+
+export const USER_SERVICE_STATUS = {
+    INVALID_REGISTER_TOKEN: 'response.invalid.token',
+    INVALID_PASSWOD: 'response.user.password.incorrect'
 }

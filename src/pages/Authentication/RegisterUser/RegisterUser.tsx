@@ -201,7 +201,7 @@ const RegisterUser = () => {
                                                             onClick={() => {
                                                                 onHandleNavigateToLogin()
                                                             }}
-                                                            className="fw-semibold text-primary text-decoration-underline"
+                                                            className="fw-semibold text-primary text-decoration-underline cursor-pointer"
                                                         >
                                                             {' '}
                                                             {i18n.t<string>('hyperlink.login')}

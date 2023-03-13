@@ -138,12 +138,7 @@ const ResetPassword = () => {
                                                                 className="btn btn-primary w-100"
                                                                 type="submit"
                                                             >
-                                                                {error ? null : loading ? (
-                                                                    <Spinner size="sm" className="me-2">
-                                                                        {' '}
-                                                                        {i18n.t<string>('buttons.loading')}...{' '}
-                                                                    </Spinner>
-                                                                ) : null}
+                                                                {error ? null : loading ? <Spinner size="sm" className="me-2" /> : null}
                                                                 {i18n.t<string>('buttons.sendUpdate')}
                                                             </Button>
                                                         </div>
@@ -157,7 +152,7 @@ const ResetPassword = () => {
                                                             onClick={() => {
                                                                 onHandleNavigateToLogin()
                                                             }}
-                                                            className="fw-semibold text-primary text-decoration-underline"
+                                                            className="fw-semibold text-primary text-decoration-underline cursor-pointer"
                                                         >
                                                             {' '}
                                                             {i18n.t<string>('hyperlink.clickHere')}

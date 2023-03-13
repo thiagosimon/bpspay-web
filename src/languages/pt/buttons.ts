@@ -22,5 +22,7 @@ export const buttons = {
     backToHome: 'Voltar para home',
     goToLogin: 'Ir para login',
     enter: 'Entrar',
-    sendRegister: 'Enviar cadastro'
+    sendRegister: 'Enviar cadastro',
+    goToPanel: 'ir para o Painel',
+    goToResendToken: 'Reenviar confirmação'
 }
