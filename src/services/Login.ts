@@ -55,3 +55,14 @@ export async function changePassword(body: any, navigation: any) {
         throw e
     }
 }
+
+export const refreshTokenService = async (navigation: any) => {
+    try {
+        let header = await Request.getDefaultHeader()
+        let response = await Request.do('get', header, null, Endpoints.systemUsers.refreshToken, navigation)
+
+        return response
+    } catch (e) {
+        throw e
+    }
+}

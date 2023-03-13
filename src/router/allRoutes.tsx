@@ -236,10 +236,12 @@ import UserProfile from '../pages/Authentication/user-profile'
 import FileManager from '../pages/FileManager'
 import ToDoList from '../pages/ToDo'
 
+import ActiveUserRegister from '../pages/Authentication/ActiveUserRegister/ActiveUserRegister'
 import CheckRegistrationEmail from '../pages/Authentication/CheckRegistrationEmail/CheckRegistrationEmail'
 import ConfirmCompanyRegistration from '../pages/Authentication/ConfirmCompanyRegistration/ConfirmCompanyRegistration'
 import ConfirmUserRegistration from '../pages/Authentication/ConfirmUserRegistration/ConfirmUserRegistration'
 import PageNotFound from '../pages/Authentication/Errors/PageNotFound'
+import ExpireUserRegisterLink from '../pages/Authentication/ExpireUserRegisterLink/ExpireUserRegisterLink'
 import RegisterCompany from '../pages/Authentication/RegisterCompany/RegisterCompany'
 import ServiceAgreementTerm from '../pages/Authentication/ServiceAgreementTerm/ServiceAgreementTerm'
 import JobLanding from '../pages/Job_Landing/Job'
@@ -467,6 +469,8 @@ const publicRoutes = [
     { path: '/confirm-user-registration', component: <ConfirmUserRegistration /> },
     { path: '/confirm-company-registration', component: <ConfirmCompanyRegistration /> },
     { path: '/service-agreement-term', component: <ServiceAgreementTerm /> },
+    { path: '/active-register-user/:params', component: <ActiveUserRegister /> },
+    { path: '/expire-user-register-link', component: <ExpireUserRegisterLink /> },
 
     //AuthenticationInner pages
     { path: '/auth-signin-basic', component: <BasicSignIn /> },

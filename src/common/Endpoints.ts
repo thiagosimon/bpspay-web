@@ -24,14 +24,18 @@ export default {
             search: `${domain}/api/users/system/search/companyuser/v1/`
         },
         checkEmailExist: `${domain}/api/users/check/email/v1/`,
-        count: `${domain}/api/generic/count/byfilter/v1/`
+        count: `${domain}/api/generic/count/byfilter/v1/`,
+        resendConfirmRegister: `${domain}/api/users/system/active/resend/v1/`,
+        activeRegister: `${domain}/api/users/system/active/v1/`,
+        refreshToken: `${domain}/api/users/system/refreshtoken/v1/`
     },
     companies: {
         company: `${domain}/api/company/v1/`,
         formData: `${domain}/api/company/formdata/v1/`,
         filter: `${domain}/api/company/filter/v1/`,
         delete: `${domain}/api/company/delete/v1/`,
-        checkDocumentExist: `${domain}/api/company/check/document/v1/`
+        checkDocumentExist: `${domain}/api/company/check/document/v1/`,
+        acceptServiceTerm: `${domain}/api/company/terms/service/accept/v1/`
     },
     logs: {
         filter: `${domain}/api/logs/filter/v1/`

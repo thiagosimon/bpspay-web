@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import InputMask from 'react-input-mask'
 import { Button, Card, Col, Container, FormFeedback, Input, Label, Row, Spinner } from 'reactstrap'
@@ -13,11 +13,11 @@ import * as Yup from 'yup'
 import useRegisterCompany from '../../../hooks/useRegisterCompany'
 
 import useValidateContact from '../../../hooks/useValidateContact'
-import { COMPANY_TYPE } from '../../../utils/Constant'
+import { COMPANY_TYPE, STORAGE_KEYS } from '../../../utils/Constant'
+import { getObjectFromStore } from '../../../utils/Storage'
 
 const RegisterCompany = () => {
     const { submitRegister, loading } = useRegisterCompany()
-
     const { documentAlreadyExist } = useValidateContact()
 
     const validation = useFormik({
@@ -25,7 +25,8 @@ const RegisterCompany = () => {
         initialValues: {
             document: '76.064.677/0001-55',
             socialName: 'Test CNPJ',
-            federalTaxId: '561.673.970-74'
+            federalTaxId: '561.673.970-74',
+            systemUser: ''
         },
         validationSchema: Yup.object({
             document: Yup.string()
@@ -54,6 +55,7 @@ const RegisterCompany = () => {
                 document: values.document,
                 socialName: values.socialName,
                 type: COMPANY_TYPE.CLIENT,
+                systemUser: values.systemUser,
                 contactPerson: {
                     federalTaxId: values.federalTaxId
                 }
@@ -62,6 +64,17 @@ const RegisterCompany = () => {
             await submitRegister(body, this)
         }
     })
+
+    useEffect(() => {
+        const getUseStore = async () => {
+            const user = await getObjectFromStore(STORAGE_KEYS.USER)
+            if (user && user._id) {
+                validation.setFieldValue('systemUser', user._id)
+            }
+        }
+
+        getUseStore()
+    }, [])
 
     return (
         <React.Fragment>

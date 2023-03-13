@@ -48,7 +48,7 @@ const ConfirmCompanyRegistration = () => {
                                                         type="submit"
                                                         onClick={() => onHandleNavigate()}
                                                     >
-                                                        {i18n.t<string>('buttons.goToLogin')}
+                                                        {i18n.t<string>('buttons.goToPanel')}
                                                     </Button>
                                                 </div>
                                             </div>

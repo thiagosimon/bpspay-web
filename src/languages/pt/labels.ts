@@ -15,5 +15,6 @@ export const labels = {
     responsableFederalTaxId: 'CPF do responsável',
     acceptServiceAgreement: 'Eu concordo com contrato de Prestação de Serviços',
     acceptTermsOfUseRequire: 'Eu concordo com os termos de uso',
-    acceptServiceAgreementRequire: 'Para realizar seu cadatro você precisa aceitar o contrato de Prestação de Serviços'
+    acceptServiceAgreementRequire: 'Para realizar seu cadatro você precisa aceitar o contrato de Prestação de Serviços',
+    seconds: 'segundos'
 }

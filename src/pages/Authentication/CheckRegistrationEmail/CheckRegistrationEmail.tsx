@@ -1,12 +1,54 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Card, Col, Container, Row } from 'reactstrap'
 import i18n from '../../../i18n'
 import AuthSlider from '../Components/AuthCarousel'
 
+import useConfirmUserRegister from '../../../hooks/useConfirmUserRegister'
+import { PAGE } from '../../../utils/Route'
 import AuthFooter from '../Components/AuthFooter'
 
 const CheckRegistrationEmail = () => {
+    const { resendEmail } = useConfirmUserRegister()
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const [resentEmail, setResentEmail] = useState(false)
+    const [email, setEmail] = useState<string>('')
+    const [timeLeft, setTimeLeft] = useState<number>(60)
+
+    const onHandleResendEmail = async () => {
+        if (!email || timeLeft > 0) return
+
+        await resendEmail(email, this)
+        setResentEmail(true)
+        setTimeLeft(60)
+    }
+
+    useEffect(() => {
+        const checkParamsNavigation = async () => {
+            if (location?.state?.email) {
+                setEmail(location.state.email)
+                if (location?.state?.resentEmail) {
+                    await resendEmail(location.state.email, this)
+                    setResentEmail(true)
+                    setTimeLeft(60)
+                }
+            } else {
+                navigate(PAGE.LOGIN)
+            }
+        }
+
+        checkParamsNavigation()
+    }, [])
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setTimeLeft(prev => prev - 1)
+        }, 1000)
+        return () => clearTimeout(timer)
+    }, [timeLeft])
+
     return (
         <React.Fragment>
             <div className="auth-page-wrapper py-5 d-flex justify-content-center align-items-center min-vh-100">
@@ -34,19 +76,33 @@ const CheckRegistrationEmail = () => {
                                                     ></lord-icon>
                                                 </div>
 
-                                                <div className="alert alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
-                                                    {i18n.t<string>('descriptions.checkEmailRegistration')}
-                                                </div>
+                                                {resentEmail ? (
+                                                    <div className="alert alert-borderless alert-success text-center mb-2 mx-2" role="alert">
+                                                        {i18n.t<string>('descriptions.checkEmailRegistrationResent')}
+                                                    </div>
+                                                ) : (
+                                                    <div className="alert alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
+                                                        {i18n.t<string>('descriptions.checkEmailRegistration')}
+                                                    </div>
+                                                )}
 
-                                                <div className="mt-3 mb-5 text-center">
-                                                    <p className="mb-0">
-                                                        {/* Caso não tenha recebido o email */}
+                                                <div className="mt-4 mb-5 text-center">
+                                                    <p onClick={() => onHandleResendEmail()} className="mb-0">
                                                         {i18n.t<string>('descriptions.checkEmailRegistrationProblem')}
-                                                        <Link to="/login" className="fw-bold text-primary text-decoration-underline">
+                                                        <Link to={'#'} className="fw-bold text-primary text-decoration-underline">
                                                             {' '}
-                                                            {i18n.t<string>('hyperlink.clickHere')}{' '}
-                                                        </Link>{' '}
+                                                            {i18n.t<string>('hyperlink.clickHere')}
+                                                        </Link>
                                                     </p>
+                                                    {timeLeft > 0 && resentEmail && (
+                                                        <p className="mt-2 mb-2 text-muted">
+                                                            {i18n.t<string>('descriptions.checkEmailRegistrationResendCountdown') +
+                                                                ' ' +
+                                                                timeLeft +
+                                                                ' ' +
+                                                                i18n.t<string>('labels.seconds')}
+                                                        </p>
+                                                    )}
                                                 </div>
                                             </div>
                                         </Col>

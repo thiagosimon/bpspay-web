@@ -4,20 +4,19 @@ import AuthFooter from '../Components/AuthFooter'
 
 import i18n from '../../../i18n'
 
-import { useNavigate } from 'react-router-dom'
 import GenericModal from '../../../components/Common/GenericModal/GenericModal'
+import useCompanyTerms from '../../../hooks/useCompanyTerms'
 import useTerms from '../../../hooks/useTerms'
-import { PAGE } from '../../../utils/Route'
+
 const ServiceAgreementTerm = () => {
     const { serviceAgreement } = useTerms()
-    const navigate = useNavigate()
-
-    const [showModal, setShowModal] = useState<boolean>(true)
     const [acceptTerms, setAcceptTerms] = useState<boolean>(false)
 
-    const onHandleSubmitTerms = (value: boolean) => {
+    const { accepServiceTerms } = useCompanyTerms()
+
+    const onHandleSubmitTerms = async (value: boolean) => {
         setAcceptTerms(value)
-        navigate(PAGE.CONFIRM_COMPANY_REGISTRATION)
+        await accepServiceTerms(this)
     }
 
     return (
@@ -26,7 +25,7 @@ const ServiceAgreementTerm = () => {
                 <div className="bg-overlay login-bg-overlay"></div>
                 <div className="auth-page-content overflow-hidden pt-lg-5">
                     <GenericModal
-                        show={showModal}
+                        show={true}
                         headerCloseIcon={false}
                         title={i18n.t('titles.serviceAgreementTerms')}
                         description={serviceAgreement}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Card, Col, Container, Row } from 'reactstrap'
 import i18n from '../../../i18n'
@@ -10,9 +10,22 @@ import AuthFooter from '../Components/AuthFooter'
 const ConfirmUserRegistration = () => {
     const navigate = useNavigate()
 
+    const [timeLeft, setTimeLeft] = useState<number>(10)
+
     const onHandleNavigateToLogin = () => {
         navigate(PAGE.LOGIN)
     }
+
+    useEffect(() => {
+        if (timeLeft === 0) {
+            onHandleNavigateToLogin()
+        }
+
+        const timer = setTimeout(() => {
+            setTimeLeft(prev => prev - 1)
+        }, 1000)
+        return () => clearTimeout(timer)
+    }, [timeLeft])
 
     return (
         <React.Fragment>
@@ -54,13 +67,17 @@ const ConfirmUserRegistration = () => {
                                                     </Button>
                                                 </div>
 
-                                                <div className="mt-3 mb-5 text-center p-4">
-                                                    <p className="mb-0 text-muted">
-                                                        {i18n.t<string>('descriptions.redirectToLoginInSeconds')}
-                                                        <Link to={PAGE.LOGIN} className="text-primary text-decoration-underline">
+                                                <div className="mt-4 mb-5 text-center">
+                                                    <p className="mb-0">
+                                                        {i18n.t<string>('descriptions.redirectToLogin')}{' '}
+                                                        {timeLeft + ' ' + i18n.t<string>('labels.seconds')}
+                                                    </p>
+                                                    <p onClick={() => onHandleNavigateToLogin()} className="mb-0">
+                                                        {i18n.t<string>('descriptions.ifNotRedirected')}{' '}
+                                                        <Link to={'#'} className="fw-bold text-primary text-decoration-underline">
                                                             {' '}
-                                                            {i18n.t<string>('hyperlink.clickHere')}{' '}
-                                                        </Link>{' '}
+                                                            {i18n.t<string>('hyperlink.clickHere')}
+                                                        </Link>
                                                     </p>
                                                 </div>
                                             </div>

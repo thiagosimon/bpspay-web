@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { registerUserService } from '../services/User'
+import { PAGE } from '../utils/Route'
 
 const useRegisterUser = () => {
     const navigate = useNavigate()
@@ -19,7 +20,7 @@ const useRegisterUser = () => {
             const { result } = response.data
 
             if (response.status === 200 && result) {
-                navigate('/check-registration-email')
+                navigate(PAGE.CHECK_REGISTRATION_EMAIL, { state: { email: data.email } })
             }
         } catch (error) {
             console.error(error)
